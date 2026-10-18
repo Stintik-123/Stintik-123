@@ -18,7 +18,7 @@
 
 ---
 
-## Главный проект
+**Главный проект**
 
 ### [StintikVPN](https://github.com/Stintik-123/StintikVPN)
 
