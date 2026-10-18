@@ -30,8 +30,6 @@
 ---
 
 ## Статистика
-
-<div align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=Stintik-123&show_icons=true&hide_border=true&title_color=60a5fa&icon_color=38bdf8&text_color=cbd5e1&bg_color=0B1220&ring_color=3B82F6&locale=ru" height="170" alt="stats"/>
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Stintik-123&layout=compact&hide_border=true&title_color=60a5fa&text_color=cbd5e1&bg_color=0B1220&locale=ru" height="170" alt="langs"/>
 </div>
