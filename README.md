@@ -1,14 +1,14 @@
 <div align="center">
 
-<img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdDRqMWhtNnVnMzR0MzJqejF6bWhmOTV3cmR6ajJrOTdrc2I1N2FjciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/x4Wq7S6wumoDBoKpml/giphy.gif" width="100%" alt="Stintik banner"/>
+<img src="https://i.giphy.com/SUcnmocyRKkfSil9xd.gif" width="100%" alt="Cyberpunk 2077 — Night City"/>
 
 ### Привет, я **Stintik** 👋
 
 **«Интернет свобода ближе чем кажется»** · **«Сделано людьми для людей»**
 
-[![StintikVPN](https://img.shields.io/github/stars/Stintik-123/StintikVPN?style=flat-square&logo=github&label=StintikVPN&color=ff6a1a)](https://github.com/Stintik-123/StintikVPN)
+[![StintikVPN](https://img.shields.io/github/stars/Stintik-123/StintikVPN?style=flat-square&logo=github&label=StintikVPN&color=3b82f6)](https://github.com/Stintik-123/StintikVPN)
 [![Telegram](https://img.shields.io/badge/Telegram-канал-2AABEE?style=flat-square&logo=telegram)](https://t.me/StintikVPN)
-[![Site](https://img.shields.io/badge/Сайт-StintikVPN-0d0d1a?style=flat-square)](https://stintik-123.github.io/StintikVPN/)
+[![Site](https://img.shields.io/badge/Сайт-StintikVPN-1e3a5f?style=flat-square)](https://stintik-123.github.io/StintikVPN/)
 
 </div>
 
@@ -44,8 +44,8 @@
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=Stintik-123&show_icons=true&hide_border=true&title_color=ff6a1a&icon_color=ff8c42&text_color=ececf1&bg_color=060608" height="165" alt="GitHub stats"/>
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Stintik-123&layout=compact&hide_border=true&title_color=ff6a1a&text_color=ececf1&bg_color=060608" height="165" alt="Top languages"/>
+<img src="https://github-readme-stats.vercel.app/api?username=Stintik-123&show_icons=true&hide_border=true&title_color=60a5fa&icon_color=38bdf8&text_color=cbd5e1&bg_color=0a0e1a" height="165" alt="GitHub stats"/>
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Stintik-123&layout=compact&hide_border=true&title_color=60a5fa&text_color=cbd5e1&bg_color=0a0e1a" height="165" alt="Top languages"/>
 
 </div>
 
