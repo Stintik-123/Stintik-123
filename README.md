@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1663850/4ee52c5bee89ccfc6bfb2f774d4de7ac4e1df165/ss_4ee52c5bee89ccfc6bfb2f774d4de7ac4e1df165.1920x1080.jpg" width="100%" alt="REPLACED"/>
+### Привет, меня зовут **Stintik-123** 👋
 
-### Привет, меня зовут **Stintik** 👋
+<img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1663850/4ee52c5bee89ccfc6bfb2f774d4de7ac4e1df165/ss_4ee52c5bee89ccfc6bfb2f774d4de7ac4e1df165.1920x1080.jpg" width="100%" alt="REPLACED"/>
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=3500&pause=1000&color=60A5FA&center=true&vCenter=true&width=620&lines=%D0%9A%D0%BE%D0%B4+%C2%B7+%D0%98%D0%B3%D1%80%D1%8B+%C2%B7+%D0%A1%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D1%8B%D0%B9+%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82;%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82+%D1%81%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%B0+%D0%B1%D0%BB%D0%B8%D0%B6%D0%B5+%D1%87%D0%B5%D0%BC+%D0%BA%D0%B0%D0%B6%D0%B5%D1%82%D1%81%D1%8F;%D0%A1%D0%B4%D0%B5%D0%BB%D0%B0%D0%BD%D0%BE+%D0%BB%D1%8E%D0%B4%D1%8C%D0%BC%D0%B8+%D0%B4%D0%BB%D1%8F+%D0%BB%D1%8E%D0%B4%D0%B5%D0%B9;Open+Source+%C2%B7+VPN+%C2%B7+Homebrew)](https://git.io/typing-svg)
 
