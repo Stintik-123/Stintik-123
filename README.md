@@ -18,9 +18,9 @@
 
 ---
 
-**Главный проект**
+### Главный проект
 
-### [StintikVPN](https://github.com/Stintik-123/StintikVPN)
+[StintikVPN](https://github.com/Stintik-123/StintikVPN)
 
 Сборник бесплатных VPN-подписок и прокси для Рунета.  
 Сайт, зеркала (GitLab / Codeberg / GitVerse), гайды и т.д.
