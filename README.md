@@ -12,39 +12,28 @@
 
 ---
 
-## 🎬 Выбор баннера (временно)
+## Выбор баннера (временно)
 
-Напиши номер гифки, которую оставить в шапке профиля.
+Статичные официальные арты со Steam — **высокое качество**, без шакалов.  
+Напиши номер, который оставить в шапке.
 
-### 1 — Cyberpunk · Johnny Silverhand
-<img src="https://media1.tenor.com/m/qdRWEdWwP8wAAAAd/johnny-silverhand-cyberpunk-2077.gif" width="100%" alt="1 Johnny Silverhand"/>
+### 1 — Cyberpunk 2077
+<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/library_hero_2x.jpg" width="100%" alt="Cyberpunk 2077"/>
 
-### 2 — Cyberpunk · Keanu / Johnny (кино)
-<img src="https://media.tenor.com/BtKIbgHwnFYAAAAd/cyberpunk2077-keanu.gif" width="100%" alt="2 Keanu Johnny"/>
+### 2 — Pragmata
+<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/3357650/library_hero_2x.jpg" width="100%" alt="Pragmata"/>
 
-### 3 — Cyberpunk · Johnny (альт)
-<img src="https://media.tenor.com/EGUvlSzzb5QAAAAd/johnny-silverhand-cyberpunk.gif" width="100%" alt="3 Johnny alt"/>
+### 3 — Clair Obscur: Expedition 33
+<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1903340/library_hero_2x.jpg" width="100%" alt="Expedition 33"/>
 
-### 4 — Cyberpunk · Night City (офиц.)
-<img src="https://i.giphy.com/SUcnmocyRKkfSil9xd.gif" width="100%" alt="4 Night City"/>
+### 4 — Cyberpunk 2077 (компактный header)
+<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/header.jpg" width="100%" alt="Cyberpunk header"/>
 
-### 5 — Cyberpunk · Neon (Xbox)
-<img src="https://i.giphy.com/GuLLbKFIAfqMw1Y7oc.gif" width="100%" alt="5 Cyberpunk neon"/>
+### 5 — Expedition 33 (компактный header)
+<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1903340/header.jpg" width="100%" alt="Expedition 33 header"/>
 
-### 6 — Pragmata · Capcom (офиц. Giphy)
-<img src="https://i.giphy.com/mxnVxZ62sub1gez4c9.gif" width="100%" alt="6 Pragmata Capcom"/>
-
-### 7 — Pragmata · Diana + robot
-<img src="https://media1.tenor.com/m/Rzf7xRbPXM8AAAAd/pragmata-capcom.gif" width="100%" alt="7 Pragmata Diana"/>
-
-### 8 — Pragmata · Diana
-<img src="https://media.tenor.com/DXCEF4b25MoAAAAd/pragmata-diana.gif" width="100%" alt="8 Pragmata Diana 2"/>
-
-### 9 — Expedition 33 · Clair Obscur
-<img src="https://media1.tenor.com/m/e0GpMuBWbJgAAAAd/clair-obscur-clair.gif" width="100%" alt="9 Expedition 33"/>
-
-### 10 — Expedition 33 · alt
-<img src="https://media.tenor.com/EGxRMQoJjjoAAAAd/clair-obscur-expedition-33.gif" width="100%" alt="10 Expedition 33 alt"/>
+### 6 — Phantom Liberty
+<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/2138330/header.jpg" width="100%" alt="Phantom Liberty"/>
 
 ---
 
