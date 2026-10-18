@@ -12,28 +12,48 @@
 
 ---
 
-## Выбор баннера (временно)
+## Выбор баннера — **REPLACED**
 
-Статичные официальные арты со Steam — **высокое качество**, без шакалов.  
-Напиши номер, который оставить в шапке.
+Официальный арт и скрины со Steam (1920×1080). Напиши номер.
 
-### 1 — Cyberpunk 2077
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/library_hero_2x.jpg" width="100%" alt="Cyberpunk 2077"/>
+### 1 — Library Hero (широкий баннер игры)
+<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1663850/library_hero_2x.jpg" width="100%" alt="REPLACED library hero"/>
 
-### 2 — Pragmata
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/3357650/library_hero_2x.jpg" width="100%" alt="Pragmata"/>
+### 2 — Header
+<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1663850/header.jpg" width="100%" alt="REPLACED header"/>
 
-### 3 — Clair Obscur: Expedition 33
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1903340/library_hero_2x.jpg" width="100%" alt="Expedition 33"/>
+### 3 — Скрин 1
+<img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1663850/b6cd61c464ea2dfbd5ae1f306b986944911b21c6/ss_b6cd61c464ea2dfbd5ae1f306b986944911b21c6.1920x1080.jpg" width="100%" alt="REPLACED ss1"/>
 
-### 4 — Cyberpunk 2077 (компактный header)
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/header.jpg" width="100%" alt="Cyberpunk header"/>
+### 4 — Скрин 2
+<img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1663850/a70da3ddecce98827ea3a5c05aa2817ff441d504/ss_a70da3ddecce98827ea3a5c05aa2817ff441d504.1920x1080.jpg" width="100%" alt="REPLACED ss2"/>
 
-### 5 — Expedition 33 (компактный header)
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1903340/header.jpg" width="100%" alt="Expedition 33 header"/>
+### 5 — Скрин 3
+<img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1663850/46e00a91460058c709af281240cfe26385467438/ss_46e00a91460058c709af281240cfe26385467438.1920x1080.jpg" width="100%" alt="REPLACED ss3"/>
 
-### 6 — Phantom Liberty
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/2138330/header.jpg" width="100%" alt="Phantom Liberty"/>
+### 6 — Скрин 4
+<img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1663850/433973ec3838085b46d3b3fe898811bd9d662a0d/ss_433973ec3838085b46d3b3fe898811bd9d662a0d.1920x1080.jpg" width="100%" alt="REPLACED ss4"/>
+
+### 7 — Скрин 5
+<img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1663850/2cf7357ca43429277c123033bce947365b81b6fa/ss_2cf7357ca43429277c123033bce947365b81b6fa.1920x1080.jpg" width="100%" alt="REPLACED ss5"/>
+
+### 8 — Скрин 6
+<img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1663850/6bd848bcf4f1ca78a0832df6896efedc019182e3/ss_6bd848bcf4f1ca78a0832df6896efedc019182e3.1920x1080.jpg" width="100%" alt="REPLACED ss6"/>
+
+### 9 — Скрин 7
+<img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1663850/4ee52c5bee89ccfc6bfb2f774d4de7ac4e1df165/ss_4ee52c5bee89ccfc6bfb2f774d4de7ac4e1df165.1920x1080.jpg" width="100%" alt="REPLACED ss7"/>
+
+### 10 — Скрин 8
+<img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1663850/09f80de553bc4fc150dbf342305a6f341f0539ff/ss_09f80de553bc4fc150dbf342305a6f341f0539ff.1920x1080.jpg" width="100%" alt="REPLACED ss8"/>
+
+### 11 — Скрин 9
+<img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1663850/2452a3993530aaf226aff4824d81402e65047023/ss_2452a3993530aaf226aff4824d81402e65047023.1920x1080.jpg" width="100%" alt="REPLACED ss9"/>
+
+### 12 — Скрин 10
+<img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1663850/dd7dbd7d02caaa9f6324be295133d763dbd70860/ss_dd7dbd7d02caaa9f6324be295133d763dbd70860.1920x1080.jpg" width="100%" alt="REPLACED ss10"/>
+
+### 13 — Скрин 11
+<img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1663850/f8988c9e73d4bd0d0bcdf4646f887daba31604d8/ss_f8988c9e73d4bd0d0bcdf4646f887daba31604d8.1920x1080.jpg" width="100%" alt="REPLACED ss11"/>
 
 ---
 
