@@ -1,10 +1,8 @@
 <div align="center">
 
+### Привет, меня зовут **Stintik-123, рад знакомству** 👋
+
 <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1663850/4ee52c5bee89ccfc6bfb2f774d4de7ac4e1df165/ss_4ee52c5bee89ccfc6bfb2f774d4de7ac4e1df165.1920x1080.jpg" width="100%" alt="REPLACED"/>
-
-### Привет, я **Stintik** 👋
-
-**«Интернет свобода ближе чем кажется»** · **«Сделано людьми для людей»**
 
 [![StintikVPN](https://img.shields.io/github/stars/Stintik-123/StintikVPN?style=flat-square&logo=github&label=StintikVPN&color=3b82f6)](https://github.com/Stintik-123/StintikVPN)
 [![Telegram](https://img.shields.io/badge/Telegram-канал-2AABEE?style=flat-square&logo=telegram)](https://t.me/StintikVPN)
