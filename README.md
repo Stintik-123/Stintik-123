@@ -54,6 +54,6 @@
 
 <div align="center">
 
-[Telegram](https://t.me/Keb04w) · [Email](mailto:stintikvpn@proton.me) · [Сайт StintikVPN](https://stintik-123.github.io/StintikVPN/)
+[Telegram](https://t.me/Keb04w) · [Email](mailto:stintikvpn@proton.me) 
 
 </div>
