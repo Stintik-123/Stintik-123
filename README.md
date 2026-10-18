@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="https://i.giphy.com/SUcnmocyRKkfSil9xd.gif" width="100%" alt="Cyberpunk 2077 — Night City"/>
-
 ### Привет, я **Stintik** 👋
 
 **«Интернет свобода ближе чем кажется»** · **«Сделано людьми для людей»**
@@ -11,6 +9,42 @@
 [![Site](https://img.shields.io/badge/Сайт-StintikVPN-1e3a5f?style=flat-square)](https://stintik-123.github.io/StintikVPN/)
 
 </div>
+
+---
+
+## 🎬 Выбор баннера (временно)
+
+Напиши номер гифки, которую оставить в шапке профиля.
+
+### 1 — Cyberpunk · Johnny Silverhand
+<img src="https://media1.tenor.com/m/qdRWEdWwP8wAAAAd/johnny-silverhand-cyberpunk-2077.gif" width="100%" alt="1 Johnny Silverhand"/>
+
+### 2 — Cyberpunk · Keanu / Johnny (кино)
+<img src="https://media.tenor.com/BtKIbgHwnFYAAAAd/cyberpunk2077-keanu.gif" width="100%" alt="2 Keanu Johnny"/>
+
+### 3 — Cyberpunk · Johnny (альт)
+<img src="https://media.tenor.com/EGUvlSzzb5QAAAAd/johnny-silverhand-cyberpunk.gif" width="100%" alt="3 Johnny alt"/>
+
+### 4 — Cyberpunk · Night City (офиц.)
+<img src="https://i.giphy.com/SUcnmocyRKkfSil9xd.gif" width="100%" alt="4 Night City"/>
+
+### 5 — Cyberpunk · Neon (Xbox)
+<img src="https://i.giphy.com/GuLLbKFIAfqMw1Y7oc.gif" width="100%" alt="5 Cyberpunk neon"/>
+
+### 6 — Pragmata · Capcom (офиц. Giphy)
+<img src="https://i.giphy.com/mxnVxZ62sub1gez4c9.gif" width="100%" alt="6 Pragmata Capcom"/>
+
+### 7 — Pragmata · Diana + robot
+<img src="https://media1.tenor.com/m/Rzf7xRbPXM8AAAAd/pragmata-capcom.gif" width="100%" alt="7 Pragmata Diana"/>
+
+### 8 — Pragmata · Diana
+<img src="https://media.tenor.com/DXCEF4b25MoAAAAd/pragmata-diana.gif" width="100%" alt="8 Pragmata Diana 2"/>
+
+### 9 — Expedition 33 · Clair Obscur
+<img src="https://media1.tenor.com/m/e0GpMuBWbJgAAAAd/clair-obscur-clair.gif" width="100%" alt="9 Expedition 33"/>
+
+### 10 — Expedition 33 · alt
+<img src="https://media.tenor.com/EGxRMQoJjjoAAAAd/clair-obscur-expedition-33.gif" width="100%" alt="10 Expedition 33 alt"/>
 
 ---
 
