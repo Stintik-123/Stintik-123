@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="300" viewBox="0 0 1000 300">
+  <defs>
+    <radialGradient id="glow1" cx="15%" cy="0%" r="80%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="90%" cy="100%" r="70%">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="title" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#a5b4fc"/>
+      <stop offset="45%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#67e8f9"/>
+    </linearGradient>
+    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1000" height="300" fill="#05060e"/>
+  <rect width="1000" height="300" fill="url(#grid)"/>
+  <rect width="1000" height="300" fill="url(#glow1)"/>
+  <rect width="1000" height="300" fill="url(#glow2)"/>
+
+  <circle cx="870" cy="150" r="70" fill="none" stroke="#818cf8" stroke-opacity="0.35" stroke-width="1.5" stroke-dasharray="4 6"/>
+  <circle cx="870" cy="150" r="95" fill="none" stroke="#22d3ee" stroke-opacity="0.25" stroke-width="1.5" stroke-dasharray="2 8"/>
+  <circle cx="870" cy="150" r="48" fill="none" stroke="#a78bfa" stroke-opacity="0.4" stroke-width="1.5" stroke-dasharray="1 5"/>
+
+  <text x="70" y="150" font-family="Segoe UI, Arial, sans-serif" font-size="76" font-weight="800" fill="url(#title)" letter-spacing="2">Stintik</text>
+  <text x="74" y="196" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="500" fill="#a4abc9">Интернет свобода ближе чем кажется</text>
+  <text x="74" y="228" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#646c90" letter-spacing="3">СДЕЛАНО ЛЮДЬМИ ДЛЯ ЛЮДЕЙ</text>
+
+  <rect x="70" y="118" width="120" height="4" rx="2" fill="url(#title)" opacity="0.8"/>
+</svg>
