@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="banner.svg" width="100%" alt="Stintik"/>
+<img src="[banner.svg](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdDRqMWhtNnVnMzR0MzJqejF6bWhmOTV3cmR6ajJrOTdrc2I1N2FjciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/x4Wq7S6wumoDBoKpml/giphy.gif)" width="100%" alt="Stintik"/>
 
 **«Интернет свобода ближе чем кажется»** · **«Сделано людьми для людей»**
 
