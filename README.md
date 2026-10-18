@@ -1,4 +1,5 @@
 <div align="center">
+### Привет, меня зовут Stintik-123
   <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1663850/4ee52c5bee89ccfc6bfb2f774d4de7ac4e1df165/ss_4ee52c5bee89ccfc6bfb2f774d4de7ac4e1df165.1920x1080.jpg" width="100%" alt="banner"/>
 </div>
 
@@ -6,15 +7,9 @@
 
 <div align="center">
 
-### Привет, меня зовут Stintik-123
-
 **Вайбкодер из России** (Ульяновск)
 
-Не разработчик в классическом смысле — собираю рабочие вещи с помощью AI, итерациями и здравым смыслом.  
-Всё, что выкладываю, бесплатное и открытое.
-
-*«Интернет свобода ближе чем кажется»*  
-*«Сделано людьми для людей»*
+Я выступаю за свободу информации в интернете и за открытый исходный код везде где это возможно. Основные ИИ для программирования: Grok и Mistral (Vibe)
 
 </div>
 
@@ -22,9 +17,7 @@
 
 ## Обо мне
 
-Живу в Ульяновске. Делаю open-source проекты вокруг свободного интернета, игр и простой автоматизации.  
-Основной подход — вайбкодинг: описываю задачу, проверяю результат, довожу до рабочего состояния.  
-Не претендую на «senior-разработчика». Просто делаю то, что реально помогает людям.
+В основном что-то создаю когда мне скучно, так что постоянных обновлений советую не ждать, обновляю проекты когда не лень
 
 ---
 
@@ -32,22 +25,10 @@
 
 ### [StintikVPN](https://github.com/Stintik-123/StintikVPN)
 
-Сборник бесплатных VPN-подписок и прокси.  
-Сайт, зеркала (GitLab / Codeberg / GitVerse), CI, автопроверка, гайды.
+Сборник бесплатных VPN-подписок и прокси для Рунета
+Сайт, зеркала (GitLab / Codeberg / GitVerse), гайды и т.д
 
 **[Открыть сайт →](https://stintik-123.github.io/StintikVPN/)**
-
----
-
-## Проекты
-
-| Проект | Описание |
-|:---|:---|
-| [GameVoice](https://github.com/Stintik-123/GameVoice) | Каталог голосовых модов и озвучек для игр. Удобный сайт с фильтрами и проверенными ссылками. |
-| [SteamDeal](https://github.com/Stintik-123/SteamDeal) · [SteamDealBot](https://github.com/Stintik-123/SteamDealBot) | Трекер скидок Steam и бот. Следит за ценами и помогает не пропустить выгодные предложения. |
-| [vpn-configs-russia](https://github.com/Stintik-123/vpn-configs-russia) | Конфиги и подписки под российские условия. Дополнение к StintikVPN. |
-| [Overdrive](https://github.com/MyLuxy/overdrive) | Русификация PS5 homebrew-лаунчера. Контрибуция в официальный релиз. |
-| [MegaThread](https://github.com/Stintik-123/MegaThread) | Небольшие утилиты и автоматизация повседневных задач. |
 
 ---
 
@@ -78,14 +59,12 @@
 
 ---
 
-## Связь
+## Контакты (Если хотите связаться со мной)
 
 <div align="center">
 
-[Telegram](https://t.me/StintikVPN) · [Email](mailto:stintikvpn@proton.me) · [Сайт StintikVPN](https://stintik-123.github.io/StintikVPN/)
+[Telegram](https://t.me/StintikVPN) · [Email](mailto:stintikvpn@proton.me) 
 
 <br/>
-
-<sub>Сделано людьми для людей</sub>
 
 </div>
