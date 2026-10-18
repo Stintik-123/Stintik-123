@@ -1,5 +1,3 @@
-<div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0B1220,40:1E3A5F,100:3B82F6&height=180&section=header&text=Stintik&fontSize=54&fontColor=E8EEF7&fontAlignY=32&desc=%D0%9A%D0%BE%D0%B4%20%C2%B7%20%D0%98%D0%B3%D1%80%D1%8B%20%C2%B7%20%D0%A1%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82&descSize=15&descAlignY=52&animation=fadeIn" width="100%" alt="header"/>
 </div>
 
 <div align="center">
