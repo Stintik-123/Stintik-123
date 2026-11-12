@@ -1,7 +1,7 @@
-// ========== CANVAS BACKGROUND ==========
-const canvas = document.getElementById('fx');
+const canvas = document.getElementById('blueprint');
 const ctx = canvas.getContext('2d');
-let w, h, particles = [], mouse = { x: 0, y: 0 };
+let w, h, t = 0;
+const mouse = { x: 0, y: 0 };
 
 function resize() {
   w = canvas.width = window.innerWidth;
@@ -9,172 +9,175 @@ function resize() {
 }
 resize();
 window.addEventListener('resize', resize);
+window.addEventListener('mousemove', e => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+});
 
-// grid + particles
-const GRID = 48;
-function initParticles() {
-  particles = [];
-  for (let i = 0; i < 60; i++) {
-    particles.push({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      vx: (Math.random() - 0.5) * 0.3,
-      vy: (Math.random() - 0.5) * 0.3,
-      r: Math.random() * 1.5 + 0.5
-    });
-  }
-}
-initParticles();
+function drawGrid() {
+  const spacing = 40;
+  const offsetX = (mouse.x - w / 2) * 0.015;
+  const offsetY = (mouse.y - h / 2) * 0.015;
 
-function draw() {
-  ctx.clearRect(0, 0, w, h);
-
-  // perspective grid
-  ctx.strokeStyle = 'rgba(255,92,26,0.04)';
+  ctx.strokeStyle = 'rgba(74, 158, 255, 0.06)';
   ctx.lineWidth = 1;
-  const offsetX = (mouse.x - w / 2) * 0.02;
-  const offsetY = (mouse.y - h / 2) * 0.02;
 
-  for (let x = 0; x < w + GRID; x += GRID) {
+  for (let x = -spacing; x < w + spacing; x += spacing) {
     ctx.beginPath();
     ctx.moveTo(x + offsetX, 0);
-    ctx.lineTo(x - offsetX, h);
+    ctx.lineTo(x - offsetX * 0.5, h);
     ctx.stroke();
   }
-  for (let y = 0; y < h + GRID; y += GRID) {
+  for (let y = -spacing; y < h + spacing; y += spacing) {
     ctx.beginPath();
     ctx.moveTo(0, y + offsetY);
-    ctx.lineTo(w, y - offsetY);
+    ctx.lineTo(w, y - offsetY * 0.5);
     ctx.stroke();
   }
 
-  // particles
-  ctx.fillStyle = 'rgba(255,92,26,0.35)';
-  particles.forEach(p => {
-    p.x += p.vx;
-    p.y += p.vy;
-    if (p.x < 0 || p.x > w) p.vx *= -1;
-    if (p.y < 0 || p.y > h) p.vy *= -1;
+  ctx.strokeStyle = 'rgba(74, 158, 255, 0.12)';
+  for (let x = 0; x < w; x += spacing * 5) {
+    ctx.beginPath();
+    ctx.moveTo(x + offsetX, 0);
+    ctx.lineTo(x - offsetX * 0.3, h);
+    ctx.stroke();
+  }
+  for (let y = 0; y < h; y += spacing * 5) {
+    ctx.beginPath();
+    ctx.moveTo(0, y + offsetY);
+    ctx.lineTo(w, y - offsetY * 0.3);
+    ctx.stroke();
+  }
+}
 
-    // mouse attract
-    const dx = mouse.x - p.x;
-    const dy = mouse.y - p.y;
-    const dist = Math.sqrt(dx * dx + dy * dy);
-    if (dist < 180) {
-      p.x -= dx * 0.008;
-      p.y -= dy * 0.008;
-    }
+const marks = [];
+for (let i = 0; i < 18; i++) {
+  marks.push({
+    x: Math.random() * 1,
+    y: Math.random() * 1,
+    len: 20 + Math.random() * 40,
+    angle: Math.random() * Math.PI,
+    speed: 0.0003 + Math.random() * 0.0005,
+    phase: Math.random() * Math.PI * 2
+  });
+}
+
+function drawMarks() {
+  ctx.strokeStyle = 'rgba(74, 158, 255, 0.2)';
+  ctx.lineWidth = 1;
+  marks.forEach(m => {
+    const x = m.x * w + Math.sin(t * m.speed + m.phase) * 30;
+    const y = m.y * h + Math.cos(t * m.speed * 0.7 + m.phase) * 20;
+    const a = m.angle + Math.sin(t * 0.001 + m.phase) * 0.2;
 
     ctx.beginPath();
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    ctx.fill();
-  });
+    ctx.moveTo(x - Math.cos(a) * m.len / 2, y - Math.sin(a) * m.len / 2);
+    ctx.lineTo(x + Math.cos(a) * m.len / 2, y + Math.sin(a) * m.len / 2);
+    ctx.stroke();
 
-  // connecting lines near mouse
-  ctx.strokeStyle = 'rgba(255,92,26,0.08)';
-  for (let i = 0; i < particles.length; i++) {
-    for (let j = i + 1; j < particles.length; j++) {
-      const a = particles[i], b = particles[j];
-      const dx = a.x - b.x, dy = a.y - b.y;
-      const d = Math.sqrt(dx * dx + dy * dy);
-      if (d < 120) {
-        ctx.globalAlpha = 1 - d / 120;
+    ctx.beginPath();
+    ctx.arc(x - Math.cos(a) * m.len / 2, y - Math.sin(a) * m.len / 2, 2, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(x + Math.cos(a) * m.len / 2, y + Math.sin(a) * m.len / 2, 2, 0, Math.PI * 2);
+    ctx.stroke();
+  });
+}
+
+function drawCrosshair() {
+  if (mouse.x === 0 && mouse.y === 0) return;
+  ctx.strokeStyle = 'rgba(74, 158, 255, 0.35)';
+  ctx.lineWidth = 1;
+  const s = 18;
+  ctx.beginPath();
+  ctx.moveTo(mouse.x - s, mouse.y);
+  ctx.lineTo(mouse.x + s, mouse.y);
+  ctx.moveTo(mouse.x, mouse.y - s);
+  ctx.lineTo(mouse.x, mouse.y + s);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(mouse.x, mouse.y, 6, 0, Math.PI * 2);
+  ctx.stroke();
+}
+
+function drawGhostStructure() {
+  const cx = w * 0.72;
+  const cy = h * 0.45;
+  const scale = Math.min(w, h) * 0.08;
+  const ox = (mouse.x - w / 2) * 0.01;
+  const oy = (mouse.y - h / 2) * 0.01;
+
+  ctx.strokeStyle = 'rgba(74, 158, 255, 0.1)';
+  ctx.lineWidth = 1.5;
+
+  function iso(x, y, z) {
+    return {
+      x: cx + (x - z) * scale * 0.866 + ox,
+      y: cy + (x + z) * scale * 0.5 - y * scale + oy
+    };
+  }
+
+  const floors = [
+    { y: 0, w: 2.2, d: 1.8 },
+    { y: 1.1, w: 2.0, d: 1.6 },
+    { y: 2.1, w: 1.7, d: 1.4 },
+    { y: 3.0, w: 1.4, d: 1.2 },
+    { y: 3.8, w: 1.0, d: 1.0 }
+  ];
+
+  floors.forEach((f, i) => {
+    const hw = f.w / 2, hd = f.d / 2;
+    const pts = [
+      iso(-hw, f.y, -hd),
+      iso(hw, f.y, -hd),
+      iso(hw, f.y, hd),
+      iso(-hw, f.y, hd)
+    ];
+    ctx.beginPath();
+    ctx.moveTo(pts[0].x, pts[0].y);
+    pts.forEach(p => ctx.lineTo(p.x, p.y));
+    ctx.closePath();
+    ctx.stroke();
+
+    if (i < floors.length - 1) {
+      const next = floors[i + 1];
+      const nhw = next.w / 2, nhd = next.d / 2;
+      [[-hw, -hd], [hw, -hd], [hw, hd], [-hw, hd]].forEach(([x, z]) => {
+        const a = iso(x, f.y, z);
+        const b = iso(x * (nhw / hw), next.y, z * (nhd / hd));
         ctx.beginPath();
         ctx.moveTo(a.x, a.y);
         ctx.lineTo(b.x, b.y);
         ctx.stroke();
-      }
+      });
     }
-  }
-  ctx.globalAlpha = 1;
-
-  requestAnimationFrame(draw);
+  });
 }
-draw();
 
-// ========== CUSTOM CURSOR ==========
-const cursor = document.getElementById('cursor');
-const follower = document.getElementById('cursorFollower');
-let cx = 0, cy = 0, fx = 0, fy = 0;
-
-document.addEventListener('mousemove', e => {
-  mouse.x = e.clientX;
-  mouse.y = e.clientY;
-  cx = e.clientX;
-  cy = e.clientY;
-});
-
-function updateCursor() {
-  cursor.style.left = cx + 'px';
-  cursor.style.top = cy + 'px';
-  fx += (cx - fx) * 0.12;
-  fy += (cy - fy) * 0.12;
-  follower.style.left = fx + 'px';
-  follower.style.top = fy + 'px';
-  requestAnimationFrame(updateCursor);
+function loop() {
+  t++;
+  ctx.clearRect(0, 0, w, h);
+  drawGrid();
+  drawMarks();
+  drawGhostStructure();
+  drawCrosshair();
+  requestAnimationFrame(loop);
 }
-updateCursor();
+loop();
 
-// cursor grow on interactive
-document.querySelectorAll('a, [data-magnetic]').forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    cursor.style.width = '14px';
-    cursor.style.height = '14px';
-    follower.style.width = '52px';
-    follower.style.height = '52px';
-    follower.style.borderColor = 'rgba(255,92,26,0.8)';
-  });
-  el.addEventListener('mouseleave', () => {
-    cursor.style.width = '8px';
-    cursor.style.height = '8px';
-    follower.style.width = '36px';
-    follower.style.height = '36px';
-    follower.style.borderColor = 'rgba(255,92,26,0.5)';
-  });
-});
-
-// ========== MAGNETIC BUTTONS ==========
-document.querySelectorAll('[data-magnetic]').forEach(el => {
-  el.addEventListener('mousemove', e => {
-    const rect = el.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    el.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
-  });
-  el.addEventListener('mouseleave', () => {
-    el.style.transform = '';
-  });
-});
-
-// ========== WORK ITEM TILT ==========
-document.querySelectorAll('.work-item').forEach(item => {
-  item.addEventListener('mousemove', e => {
-    const rect = item.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    item.style.transform = `perspective(800px) rotateY(${x * 4}deg) rotateX(${-y * 3}deg)`;
-  });
-  item.addEventListener('mouseleave', () => {
-    item.style.transform = '';
-  });
-});
-
-// ========== SCROLL REVEAL ==========
-const observer = new IntersectionObserver(entries => {
+const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('in-view');
-    }
+    if (e.isIntersecting) e.target.classList.add('visible');
   });
-}, { threshold: 0.12 });
+}, { threshold: 0.1 });
 
-document.querySelectorAll('.work-item, .about-main, .side-block, .now-content, .contact-inner').forEach(el => {
+document.querySelectorAll('.floor, .cut-main, .note, .log-entry, .contact-frame').forEach(el => {
   el.style.opacity = '0';
-  el.style.transform = 'translateY(30px)';
+  el.style.transform = 'translateY(24px)';
   el.style.transition = 'opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1)';
-  observer.observe(el);
+  obs.observe(el);
 });
 
 const style = document.createElement('style');
-style.textContent = `.in-view { opacity: 1 !important; transform: none !important; }`;
+style.textContent = `.visible { opacity: 1 !important; transform: none !important; }`;
 document.head.appendChild(style);

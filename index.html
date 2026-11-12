@@ -3,189 +3,214 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stintik</title>
-  <meta name="description" content="Соло-разработчик. Инструменты без рекламы." />
+  <title>Stintik — чертёж</title>
+  <meta name="description" content="Соло-разработчик. Чертёж профиля." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <canvas id="fx"></canvas>
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-follower" id="cursorFollower"></div>
+  <canvas id="blueprint"></canvas>
 
-  <div class="noise-overlay"></div>
-
-  <header class="header">
-    <a href="#" class="logo" data-magnetic>
-      <span class="logo-s">S</span>
-      <span class="logo-rest">tintik</span>
-    </a>
-    <nav class="nav">
-      <a href="#work" data-magnetic>work</a>
-      <a href="#about" data-magnetic>about</a>
-      <a href="#now" data-magnetic>now</a>
-    </nav>
-    <a href="https://t.me/stintik" class="nav-tg" data-magnetic target="_blank" rel="noopener">tg ↗</a>
-  </header>
+  <div class="hud">
+    <div class="hud-left">
+      <span class="hud-id">STINTIK-001</span>
+      <span class="hud-sep">|</span>
+      <span>ULYANOVSK</span>
+      <span class="hud-sep">|</span>
+      <span>2016—∞</span>
+    </div>
+    <div class="hud-right">
+      <a href="https://t.me/stintik" target="_blank" rel="noopener">TG</a>
+      <a href="https://github.com/Stintik-123" target="_blank" rel="noopener">GH</a>
+    </div>
+  </div>
 
   <main>
-    <!-- HERO -->
-    <section class="hero" id="top">
-      <div class="hero-meta">
-        <span class="status"><i></i> online</span>
-        <span>ulyanovsk · 2016—</span>
-      </div>
-      <h1 class="hero-title" id="heroTitle">
-        <span class="line"><span class="word">делаю</span></span>
-        <span class="line"><span class="word accent">инструменты</span></span>
-        <span class="line"><span class="word">которыми</span></span>
-        <span class="line"><span class="word">пользуются</span></span>
-        <span class="line"><span class="word">люди</span></span>
+    <!-- TITLE BLOCK -->
+    <section class="title-block" id="top">
+      <div class="tb-corner tl"></div>
+      <div class="tb-corner tr"></div>
+      <div class="tb-corner bl"></div>
+      <div class="tb-corner br"></div>
+
+      <div class="tb-label">SHEET 01 / PROFILE ELEVATION</div>
+      <h1 class="tb-title">
+        <span class="draw-line">STINTIK</span>
       </h1>
-      <p class="hero-sub">
-        бесплатные каталоги · vpn · озвучки · open source<br>
-        без рекламы · без аккаунтов · без рассылок
-      </p>
-      <div class="hero-scroll">
-        <span>scroll</span>
-        <div class="scroll-line"></div>
+      <p class="tb-sub">соло-разработчик · инструменты без условий</p>
+
+      <div class="tb-meta">
+        <div class="meta-item">
+          <span class="meta-k">SCALE</span>
+          <span class="meta-v">1 : 1</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-k">STATUS</span>
+          <span class="meta-v live">LIVE</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-k">PROJECTS</span>
+          <span class="meta-v">05</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-k">LINKS</span>
+          <span class="meta-v">1847</span>
+        </div>
       </div>
     </section>
 
-    <!-- WORK -->
-    <section class="section work" id="work">
-      <div class="section-label">
-        <span>01</span>
-        <h2>проекты</h2>
+    <!-- STRUCTURE / PROJECTS -->
+    <section class="structure" id="work">
+      <div class="section-head">
+        <span class="sheet-num">SHEET 02</span>
+        <h2>STRUCTURE · PROJECTS</h2>
+        <div class="dim-line"></div>
       </div>
 
-      <div class="work-list">
-        <a href="#" class="work-item" data-index="01">
-          <div class="work-num">01</div>
-          <div class="work-info">
+      <div class="isometric">
+        <article class="floor" data-floor="01">
+          <div class="floor-num">01</div>
+          <div class="floor-body">
             <h3>StintikVPN</h3>
-            <p>бесплатные vpn-подписки, telegram-прокси и гайды. скопировал — работает.</p>
-            <div class="work-tags"><span>vpn</span><span>telegram</span><span>1386 ссылок</span></div>
+            <p>бесплатные vpn · telegram-прокси · гайды</p>
+            <div class="floor-dims">
+              <span>W: 1386 links</span>
+              <span>H: ★166</span>
+            </div>
           </div>
-          <div class="work-meta">★ 166</div>
-          <div class="work-arrow">→</div>
-        </a>
+        </article>
 
-        <a href="#" class="work-item" data-index="02">
-          <div class="work-num">02</div>
-          <div class="work-info">
+        <article class="floor" data-floor="02">
+          <div class="floor-num">02</div>
+          <div class="floor-body">
             <h3>MegaThread</h3>
-            <p>каталог ресурсов: торренты, кино, аниме, игры, книги. pwa, работает офлайн.</p>
-            <div class="work-tags"><span>каталог</span><span>pwa</span><span>9 разделов</span></div>
+            <p>каталог · торренты · кино · аниме · pwa offline</p>
+            <div class="floor-dims">
+              <span>W: 9 sections</span>
+              <span>H: offline</span>
+            </div>
           </div>
-          <div class="work-meta">offline</div>
-          <div class="work-arrow">→</div>
-        </a>
+        </article>
 
-        <a href="#" class="work-item" data-index="03">
-          <div class="work-num">03</div>
-          <div class="work-info">
+        <article class="floor" data-floor="03">
+          <div class="floor-num">03</div>
+          <div class="floor-body">
             <h3>GameVoice</h3>
-            <p>русификаторы и озвучки игр. кто делал, статус, прямые ссылки — в одной карточке.</p>
-            <div class="work-tags"><span>игры</span><span>озвучка</span><span>461 ссылка</span></div>
+            <p>русификаторы · озвучки · статусы · прямые ссылки</p>
+            <div class="floor-dims">
+              <span>W: 461 links</span>
+              <span>H: 187/297</span>
+            </div>
           </div>
-          <div class="work-meta">187/297</div>
-          <div class="work-arrow">→</div>
-        </a>
+        </article>
 
-        <a href="#" class="work-item" data-index="04">
-          <div class="work-num">04</div>
-          <div class="work-info">
+        <article class="floor" data-floor="04">
+          <div class="floor-num">04</div>
+          <div class="floor-body">
             <h3>SteamDeal</h3>
-            <p>скидки steam с ценами в ru / kz / ua / us. фильтры по % и цене.</p>
-            <div class="work-tags"><span>steam</span><span>цены</span><span>4 региона</span></div>
+            <p>скидки steam · цены ru/kz/ua/us · фильтры</p>
+            <div class="floor-dims">
+              <span>W: 4 regions</span>
+              <span>H: live</span>
+            </div>
           </div>
-          <div class="work-meta">live</div>
-          <div class="work-arrow">→</div>
-        </a>
+        </article>
 
-        <a href="https://github.com/Stintik-123/Overdrive" class="work-item" data-index="05" target="_blank" rel="noopener">
-          <div class="work-num">05</div>
-          <div class="work-info">
+        <article class="floor" data-floor="05">
+          <div class="floor-num">05</div>
+          <div class="floor-body">
             <h3>Overdrive</h3>
-            <p>homebrew-магазин для ps5. нативный c++ с сетью и обновлениями.</p>
-            <div class="work-tags"><span>ps5</span><span>c++</span><span>1800+ игр</span></div>
+            <p>ps5 homebrew · native c++ · сеть · обновления</p>
+            <div class="floor-dims">
+              <span>W: 1800+ games</span>
+              <span>H: ★10</span>
+            </div>
           </div>
-          <div class="work-meta">★ 10</div>
-          <div class="work-arrow">→</div>
-        </a>
+        </article>
       </div>
 
-      <div class="repos">
-        <span class="repos-label">ещё в репозиториях</span>
-        <div class="repos-list">
-          <a href="https://github.com/Stintik-123/SteamPACC" target="_blank" rel="noopener">SteamPACC</a>
-          <a href="https://github.com/Stintik-123/Selene" target="_blank" rel="noopener">Selene</a>
-          <a href="https://github.com/Stintik-123/streamflix-desktop" target="_blank" rel="noopener">streamflix</a>
-          <a href="https://github.com/Stintik-123/minimax-code" target="_blank" rel="noopener">minimax-code</a>
-          <a href="https://github.com/Stintik-123/OpenMausBot" target="_blank" rel="noopener">OpenMausBot</a>
-          <a href="https://github.com/Stintik-123/SteamDealBot" target="_blank" rel="noopener">SteamDealBot</a>
+      <div class="repos-row">
+        <span class="repos-label">ADDITIONAL STRUCTURES</span>
+        <div class="repos-links">
+          <a href="https://github.com/Stintik-123/SteamPACC" target="_blank">SteamPACC</a>
+          <a href="https://github.com/Stintik-123/Selene" target="_blank">Selene</a>
+          <a href="https://github.com/Stintik-123/streamflix-desktop" target="_blank">streamflix</a>
+          <a href="https://github.com/Stintik-123/minimax-code" target="_blank">minimax-code</a>
+          <a href="https://github.com/Stintik-123/OpenMausBot" target="_blank">OpenMausBot</a>
+          <a href="https://github.com/Stintik-123/SteamDealBot" target="_blank">SteamDealBot</a>
         </div>
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section class="section about" id="about">
-      <div class="section-label">
-        <span>02</span>
-        <h2>обо мне</h2>
+    <!-- SECTION / ABOUT -->
+    <section class="section-cut" id="about">
+      <div class="section-head">
+        <span class="sheet-num">SHEET 03</span>
+        <h2>SECTION CUT · ABOUT</h2>
+        <div class="dim-line"></div>
       </div>
-      <div class="about-grid">
-        <div class="about-main">
-          <p class="big">Соло-разработчик из Ульяновска. Делаю бесплатные инструменты для доступа к информации.</p>
-          <p>Начинал с Minecraft-модов и каналов. Оттуда привычка: если нужно людям — просто сделай и выложи. Без условий.</p>
-          <p>Сейчас код в основном печатает ИИ. Я решаю <em>что</em>, <em>зачем</em> и <em>как это должно работать</em>. Продукт и ответственность — мои.</p>
+
+      <div class="cut-grid">
+        <div class="cut-main">
+          <p class="cut-lead">Соло-разработчик из Ульяновска. Делаю бесплатные инструменты для доступа к информации.</p>
+          <p>Начинал с Minecraft-модов. Привычка: если нужно людям — просто сделай и выложи. Без условий.</p>
+          <p>Код печатает ИИ. Я решаю <em>что</em>, <em>зачем</em> и <em>как это должно работать</em>. Ответственность — моя.</p>
         </div>
-        <div class="about-side">
-          <div class="side-block">
-            <h4>принцип</h4>
+        <div class="cut-notes">
+          <div class="note">
+            <span class="note-label">NOTE A</span>
             <p>без рекламы<br>без аккаунтов<br>без рассылок</p>
           </div>
-          <div class="side-block">
-            <h4>вне работы</h4>
+          <div class="note">
+            <span class="note-label">NOTE B</span>
             <p>сюжетные игры<br>интерактивное кино<br>железо · r/Ru_Piracy</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- NOW -->
-    <section class="section now" id="now">
-      <div class="section-label">
-        <span>03</span>
-        <h2>сейчас</h2>
+    <!-- STATUS -->
+    <section class="status-sheet" id="now">
+      <div class="section-head">
+        <span class="sheet-num">SHEET 04</span>
+        <h2>STATUS LOG</h2>
+        <div class="dim-line"></div>
       </div>
-      <div class="now-content">
-        <p class="date">12 ноября 2026</p>
-        <p>Обновляю <strong>MegaThread</strong> — 85 доменов мёртвые, 66 режутся DNS. GameVoice получил трейлеры и поиск по транслиту.</p>
-        <p>Переделываю <strong>SteamDeal</strong>: фильтры по регионам, нормальная сортировка, мобилка.</p>
-        <p><strong>r/Ru_Piracy</strong> + <strong>Overdrive</strong> для PS5 — сеть, обновления, перевод.</p>
+      <div class="log">
+        <div class="log-entry">
+          <span class="log-date">12.11.2026</span>
+          <p>MegaThread — 85 доменов мёртвые, 66 режутся DNS. GameVoice: трейлеры + поиск по транслиту.</p>
+        </div>
+        <div class="log-entry">
+          <span class="log-date">NOW</span>
+          <p>SteamDeal — новая вёрстка, фильтры по регионам, мобилка. Overdrive — сеть, обновления, перевод.</p>
+        </div>
+        <div class="log-entry">
+          <span class="log-date">ACTIVE</span>
+          <p>r/Ru_Piracy — AutoModerator, вики, регулярные треды.</p>
+        </div>
       </div>
     </section>
 
     <!-- CONTACT -->
-    <section class="section contact" id="contact">
-      <div class="contact-inner">
-        <p class="contact-label">связь</p>
-        <a href="https://t.me/stintik" class="contact-main" data-magnetic target="_blank" rel="noopener">
-          telegram
-          <span class="contact-arrow">↗</span>
-        </a>
-        <a href="https://github.com/Stintik-123" class="contact-sub" target="_blank" rel="noopener">github</a>
+    <section class="contact-sheet" id="contact">
+      <div class="contact-frame">
+        <div class="cf-corner tl"></div>
+        <div class="cf-corner tr"></div>
+        <div class="cf-corner bl"></div>
+        <div class="cf-corner br"></div>
+        <span class="cf-label">CONTACT NODE</span>
+        <a href="https://t.me/stintik" class="cf-main" target="_blank" rel="noopener">TELEGRAM</a>
+        <a href="https://github.com/Stintik-123" class="cf-sub" target="_blank" rel="noopener">GITHUB →</a>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <span>© 2016–2026</span>
-    <span class="footer-loc">ulyanovsk</span>
+    <span>STINTIK · ARCHITECTURAL PROFILE</span>
+    <span>DRAWN 2016–2026</span>
   </footer>
 
   <script src="script.js"></script>
