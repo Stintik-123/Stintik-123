@@ -3,106 +3,300 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>stintik</title>
-<meta name="description" content="Личная страница. Сначала один вопрос, потом содержимое." />
-<meta name="robots" content="noindex, nofollow" />
-<meta name="theme-color" content="#0A0A0B" />
+<title>Stintik — интернет ближе, чем кажется</title>
+<meta name="description" content="Соло-разработчик из Ульяновска. Бесплатные инструменты для доступа к информации: VPN-подписки, каталоги, озвучки игр. Без рекламы и регистрации." />
+<meta name="theme-color" content="#08080a" />
+<meta name="color-scheme" content="dark" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Stintik — интернет ближе, чем кажется" />
+<meta property="og:description" content="Бесплатные инструменты для доступа к информации. Проекты открыты, код открыт, доступ бесплатный." />
+<meta property="og:image" content="https://stintik-123.github.io/Stintik-123/assets/og.png" />
+<meta property="og:url" content="https://stintik-123.github.io/Stintik-123/" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://stintik-123.github.io/Stintik-123/assets/og.png" />
+
 <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
-<link rel="stylesheet" href="styles.css" />
+<link rel="apple-touch-icon" href="assets/mark.svg" />
+<link rel="manifest" href="manifest.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" />
+
+<link rel="stylesheet" href="styles.css?v=2" />
 </head>
 <body>
 
-<div class="stripes" aria-hidden="true"></div>
+<div class="grid-bg" aria-hidden="true"></div>
+<div class="glow" aria-hidden="true"></div>
 
-<main class="shell">
+<header class="header" id="header">
+  <div class="header-inner">
+    <a class="brand" href="#top">
+      <span class="mark" aria-hidden="true">s</span>
+      <span>Stintik</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Основная навигация">
+      <a href="#projects">Проекты</a>
+      <a href="#now">Сейчас</a>
+      <a href="#stack">Стек</a>
+      <a href="#contact">Связь</a>
+      <a class="nav-cta" href="https://t.me/Keb04w" target="_blank" rel="noopener">Telegram</a>
+    </nav>
+    <button class="burger" id="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="nav">☰</button>
+  </div>
+</header>
 
-  <div class="topline"><span class="mark" aria-hidden="true">s</span><span>личная страница</span></div>
+<main class="shell" id="top">
 
-  <!-- ЭКРАН ВХОДА -->
-  <section class="gate" id="gate" aria-labelledby="gate-q">
-    <p class="label">01 — вход</p>
-    <h1 class="gate-title" id="gate-q">Откуда вы?</h1>
-    <p class="gate-sub">Один вопрос, чтобы страница понимала, что вам рассказывать.<br />Ответ запомнится на этом устройстве.</p>
+  <!-- ------------------------------ HERO ------------------------------ -->
+  <section class="hero">
+    <p class="eyebrow">Ульяновск, интернет · <b>с 2016</b></p>
+    <h1 class="hero-title">Делаю <em>инструменты</em>, которыми пользуются люди</h1>
+    <p class="hero-lead">
+      Соло-разработчик из Ульяновска. Собираю бесплатные каталоги, VPN-подписки и
+      озвучки игр — <b>без рекламы, аккаунтов и рассылок</b>. Почти всё лежит
+      открыто: бери, форкай, переделывай.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#projects">Смотреть проекты</a>
+      <a class="btn" href="https://t.me/Keb04w" target="_blank" rel="noopener">Написать в Telegram</a>
+      <a class="btn" href="https://github.com/Stintik-123" target="_blank" rel="noopener">GitHub</a>
+    </div>
 
-    <ul class="gate-list" id="gateList">
-      <li><button type="button" data-answer="friend" data-label="от знакомого"><span class="num">01</span><span class="txt">От знакомого</span><span class="arrow">→</span></button></li>
-      <li><button type="button" data-answer="friend" data-label="из Telegram"><span class="num">02</span><span class="txt">Из Telegram</span><span class="arrow">→</span></button></li>
-      <li><button type="button" data-answer="friend" data-label="по ссылке из проекта"><span class="num">03</span><span class="txt">По ссылке из проекта</span><span class="arrow">→</span></button></li>
-      <li><button type="button" data-answer="stranger" data-label="просто зашёл"><span class="num">04</span><span class="txt">Просто зашёл</span><span class="arrow">→</span></button></li>
-    </ul>
-
-    <p class="gate-note">Честно: это занавес, а не замок. Кто откроет исходники — увидит всё. Но случайный гость сначала ответит.</p>
+    <dl class="hero-meta">
+      <div>
+        <dt>Проектов</dt>
+        <dd>05 <span>live</span></dd>
+      </div>
+      <div>
+        <dt>Ссылок в каталогах</dt>
+        <dd>1847 <span>проверено</span></dd>
+      </div>
+      <div>
+        <dt>Стек</dt>
+        <dd>11 <span>языков</span></dd>
+      </div>
+      <div>
+        <dt>Подписчиков</dt>
+        <dd>176 <span>★</span></dd>
+      </div>
+    </dl>
   </section>
 
-  <!-- КРАТКАЯ ВЕРСИЯ -->
-  <section class="view" id="view-stranger" hidden aria-labelledby="s-title">
-    <p class="label">02 — коротко</p>
-    <h1 class="big" id="s-title">Привет.<br />Это личная страница.</h1>
-
-    <div class="prose">
-      <p>Здесь живёт человек, который делает бесплатные инструменты для доступа к информации: подписки, каталоги, утилиты. Без рекламы, без аккаунтов, без «подпишитесь на рассылку».</p>
-      <p>Всё, что нужно знать с ходу: проекты открыты, код открыт, доступ бесплатный. Если пришли по делу — вам, скорее всего, нужен один из них.</p>
+  <!-- ---------------------------- ПРОЕКТЫ ---------------------------- -->
+  <section class="section" id="projects">
+    <div class="section-head">
+      <span class="idx">01</span>
+      <h2>Проекты</h2>
+      <span class="note">всё работает прямо сейчас · без регистрации</span>
     </div>
 
-    <ol class="rows">
-      <li><a href="https://stintik-123.github.io/StintikVPN/" target="_blank" rel="noopener"><span class="num">01</span><span class="row-main"><b>StintikVPN</b><em>бесплатные VPN-подписки и прокси</em></span><span class="arrow">→</span></a></li>
-      <li><a href="https://stintik-123.github.io/MegaThread/" target="_blank" rel="noopener"><span class="num">02</span><span class="row-main"><b>MegaThread</b><em>каталог из 1386 ссылок в 9 разделах</em></span><span class="arrow">→</span></a></li>
-      <li><a href="https://stintik-123.github.io/GameVoice/" target="_blank" rel="noopener"><span class="num">03</span><span class="row-main"><b>GameVoice</b><em>русификаторы и озвучки для игр</em></span><span class="arrow">→</span></a></li>
-    </ol>
+    <div class="projects">
 
-    <p class="prompt-line">Если мы знакомы — вернитесь и выберите другой ответ.</p>
+      <article class="project reveal">
+        <div class="project-shot">
+          <img src="assets/projects/stintikvpn.jpg" alt="Главная страница StintikVPN: список VPN-подписок с QR-кодами" loading="lazy" decoding="async" />
+          <span class="tag">★ 166</span>
+        </div>
+        <div class="project-body">
+          <h3 class="project-title"><span class="num">01</span> StintikVPN</h3>
+          <p class="project-desc">Бесплатные VPN-подписки, Telegram-прокси и гайды. Скопировал — вставил в клиент — работает.</p>
+          <div class="project-stats">
+            <span class="chip hot">MTProto</span>
+            <span class="chip">WARP</span>
+            <span class="chip">Зеркала</span>
+          </div>
+          <div class="project-links">
+            <a href="https://stintik-123.github.io/StintikVPN/" target="_blank" rel="noopener">Открыть</a>
+            <a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener">Код</a>
+            <span class="go" aria-hidden="true">→</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="project-shot">
+          <img src="assets/projects/megathread.jpg" alt="Каталог MegaThread: боковое меню разделов и сетка ресурсов" loading="lazy" decoding="async" />
+          <span class="tag">1386 ссылок</span>
+        </div>
+        <div class="project-body">
+          <h3 class="project-title"><span class="num">02</span> MegaThread</h3>
+          <p class="project-desc">Каталог пиратских ресурсов и трекеров: торренты, кино, аниме, игры, книги. Работает офлайн как PWA.</p>
+          <div class="project-stats">
+            <span class="chip hot">9 разделов</span>
+            <span class="chip">43 метки</span>
+            <span class="chip">Офлайн</span>
+          </div>
+          <div class="project-links">
+            <a href="https://stintik-123.github.io/MegaThread/" target="_blank" rel="noopener">Открыть</a>
+            <a href="https://github.com/Stintik-123/MegaThread" target="_blank" rel="noopener">Код</a>
+            <span class="go" aria-hidden="true">→</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="project-shot">
+          <img src="assets/projects/gamevoice.jpg" alt="Каталог GameVoice: карточки игр с вариантами локализации" loading="lazy" decoding="async" />
+          <span class="tag">102 игры</span>
+        </div>
+        <div class="project-body">
+          <h3 class="project-title"><span class="num">03</span> GameVoice</h3>
+          <p class="project-desc">Русификаторы и озвучки игр. Кто делал, что переведено, статус работы и прямые ссылки — всё в одной карточке.</p>
+          <div class="project-stats">
+            <span class="chip hot">461 ссылка</span>
+            <span class="chip">Трейлеры</span>
+            <span class="chip">22 жанра</span>
+          </div>
+          <div class="project-links">
+            <a href="https://stintik-123.github.io/GameVoice/" target="_blank" rel="noopener">Открыть</a>
+            <a href="https://github.com/Stintik-123/GameVoice" target="_blank" rel="noopener">Код</a>
+            <span class="go" aria-hidden="true">→</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="project-shot">
+          <img src="assets/projects/steamdeal.jpg" alt="SteamDeal: фильтры скидок и карточки игр с ценами" loading="lazy" decoding="async" />
+          <span class="tag">187 из 297</span>
+        </div>
+        <div class="project-body">
+          <h3 class="project-title"><span class="num">04</span> SteamDeal</h3>
+          <p class="project-desc">Витрина скидок Steam с ценами в регионах RU, KZ, UA и US. Фильтры по проценту, цене и наличию.</p>
+          <div class="project-stats">
+            <span class="chip">4 региона</span>
+            <span class="chip">Без магазина</span>
+          </div>
+          <div class="project-links">
+            <a href="https://stintik-123.github.io/SteamDeal/" target="_blank" rel="noopener">Открыть</a>
+            <a href="https://github.com/Stintik-123/SteamDeal" target="_blank" rel="noopener">Код</a>
+            <span class="go" aria-hidden="true">→</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="project-shot">
+          <img src="assets/projects/overdrive.jpg" alt="Overdrive: магазин homebrew-игр для PlayStation 5" loading="lazy" decoding="async" />
+          <span class="tag">★ 10 · C++</span>
+        </div>
+        <div class="project-body">
+          <h3 class="project-title"><span class="num">05</span> Overdrive</h3>
+          <p class="project-desc">Магазин homebrew для PS5. Нативное приложение на C++ с поддержкой сети и обновлений.</p>
+          <div class="project-stats">
+            <span class="chip hot">1800+ игр</span>
+            <span class="chip">PS5</span>
+            <span class="chip">C++</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Stintik-123/Overdrive" target="_blank" rel="noopener">Репозиторий</a>
+            <span class="go" aria-hidden="true">→</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
   </section>
 
-  <!-- ПОЛНАЯ ВЕРСИЯ -->
-  <section class="view" id="view-friend" hidden aria-labelledby="f-title">
-    <p class="label">02 — полностью</p>
-    <h1 class="big" id="f-title">Стинт.<br />Ульяновск, интернет.</h1>
-
-    <div class="prose">
-      <p>Меня зовут Stintik. Начинал с модов и каналов по Minecraft, сейчас делаю то, чем пользуются незнакомые люди — и это интереснее всего.</p>
-      <p>Стою за свободу информации и открытый код. Почти всё, что собираю, лежит открыто: бери, форкай, переделывай. Код в основном печатает ИИ, я решаю, что и зачем — отсюда скорость.</p>
-      <p>Вне работы это сюжетные игры, интерактивное кино и железо. Сейчас — сабреддит r/Ru_Piracy, каталоги и мелкие утилиты.</p>
+  <!-- ----------------------------- СЕЙЧАС ----------------------------- -->
+  <section class="section" id="now">
+    <div class="section-head">
+      <span class="idx">02</span>
+      <h2>Сейчас</h2>
+      <span class="note">обновлено 12 ноября 2026</span>
     </div>
 
-    <h2 class="h2">Проекты</h2>
-    <ol class="rows">
-      <li><a href="https://stintik-123.github.io/StintikVPN/" target="_blank" rel="noopener"><span class="num">01</span><span class="row-main"><b>StintikVPN</b><em>VPN-подписки, MTProto-прокси, зеркала и гайды · ★166</em></span><span class="arrow">→</span></a></li>
-      <li><a href="https://stintik-123.github.io/MegaThread/" target="_blank" rel="noopener"><span class="num">02</span><span class="row-main"><b>MegaThread</b><em>пиратский каталог: 1386 ссылок, 9 разделов, офлайн-PWA</em></span><span class="arrow">→</span></a></li>
-      <li><a href="https://stintik-123.github.io/GameVoice/" target="_blank" rel="noopener"><span class="num">03</span><span class="row-main"><b>GameVoice</b><em>каталог русификаторов и озвучек</em></span><span class="arrow">→</span></a></li>
-      <li><a href="https://stintik-123.github.io/SteamDeal/" target="_blank" rel="noopener"><span class="num">04</span><span class="row-main"><b>SteamDeal</b><em>витрина скидок Steam с ценами в RU, KZ, UA, US</em></span><span class="arrow">→</span></a></li>
-      <li><a href="https://github.com/Stintik-123/Overdrive" target="_blank" rel="noopener"><span class="num">05</span><span class="row-main"><b>Overdrive</b><em>магазин homebrew для PS5, 1800+ игр · C++ · ★10</em></span><span class="arrow">→</span></a></li>
-    </ol>
+    <div class="split">
+      <div class="prose reveal">
+        <p>Обновляю <b>MegaThread</b> — перепроверил все ссылки, 85 доменов оказались мёртвыми, 66 режутся местным DNS. Каталог GameVoice пополнился трейлерами и чистым поиском по транслиту.</p>
+        <p>Переделываю <b>SteamDeal</b> на новую вёрстку: фильтры по регионам, нормальная сортировка, мобильная вёрстка.</p>
+        <p>Разбираюсь с <b>r/Ru_Piracy</b> — AutoModerator, вики, регулярные треды. Плюс <b>Overdrive</b> для PS5: сеть, обновления, перевод интерфейса.</p>
+        <p>Вне работы — сюжетные игры, интерактивное кино и железо. Много лет в Minecraft-модах и каналах, теперь делаю то, чем пользуются незнакомые люди. И это интереснее всего.</p>
+      </div>
 
-    <h2 class="h2">Чем занят сейчас</h2>
-    <div class="prose">
-      <p>Обновляю каталог MegaThread — проверил все ссылки, 85 доменов оказались мёртвыми, 66 режутся местным DNS. Переделываю SteamDeal на новую вёрстку. Разбираюсь с r/Ru_Piracy: AutoModerator, вики, регулярные треды.</p>
-    </div>
-
-    <h2 class="h2">Стек</h2>
-    <p class="inline-list">JavaScript · TypeScript · Python · C++ · C# · Kotlin · HTML/CSS · GitHub Actions · GitHub Pages · PySide · Playnite SDK</p>
-
-    <h2 class="h2">Связь</h2>
-    <ol class="rows rows-tight">
-      <li><a href="https://t.me/Keb04w" target="_blank" rel="noopener"><span class="num">01</span><span class="row-main"><b>Telegram</b><em>@Keb04w — быстрее всего</em></span><span class="arrow">→</span></a></li>
-      <li><a href="https://github.com/Stintik-123" target="_blank" rel="noopener"><span class="num">02</span><span class="row-main"><b>GitHub</b><em>Stintik-123</em></span><span class="arrow">→</span></a></li>
-      <li><a href="https://gitlab.com/Stintik-123" target="_blank" rel="noopener"><span class="num">03</span><span class="row-main"><b>GitLab</b><em>зеркала проектов</em></span><span class="arrow">→</span></a></li>
-      <li><a href="mailto:stintikvpn@proton.me"><span class="num">04</span><span class="row-main"><b>Почта</b><em>stintikvpn@proton.me</em></span><span class="arrow">→</span></a></li>
-    </ol>
-
-    <h2 class="h2">Что бесполезно спрашивать</h2>
-    <div class="prose">
-      <p>Зачем пиратить, если можно купить. Почему не выкладываю исходники игр. Не «сломаю» ли чужой аккаунт. Политику тут не обсуждаю — для этого есть другие места.</p>
+      <aside class="panel reveal">
+        <h3 class="panel-title">Принципы</h3>
+        <ul class="stack-list">
+          <li><span class="n">01</span> Никакой рекламы и трекеров</li>
+          <li><span class="n">02</span> Код открыт — форкай и переделывай</li>
+          <li><span class="n">03</span> Доступ без аккаунтов и регистрации</li>
+          <li><span class="n">04</span> Ссылки проверяются, мёртвые вычищаются</li>
+          <li><span class="n">05</span> ИИ пишет код, я решаю что и зачем</li>
+        </ul>
+      </aside>
     </div>
   </section>
 
-  <footer class="foot" id="foot" hidden>
-    <span id="footAnswer">—</span>
-    <button type="button" class="link" id="resetGate">сменить ответ</button>
-    <span class="foot-year" id="year"></span>
+  <!-- ------------------------------ СТЕК ------------------------------ -->
+  <section class="section" id="stack">
+    <div class="section-head">
+      <span class="idx">03</span>
+      <h2>Стек</h2>
+    </div>
+
+    <div class="split">
+      <div class="prose reveal">
+        <p>Основной стек сайтов — <b>JavaScript и TypeScript</b> без сборщиков: статические страницы на GitHub Pages. Всё, что сложнее, — <b>Python</b> для сбора и проверки данных, <b>C++</b> для нативных приложений и <b>C#</b> для утилит под Windows.</p>
+        <p>Деплой — <b>GitHub Actions</b> и Pages, регулярные задачи по cron: пересборка каталогов, проверка ссылок, генерация графиков.</p>
+      </div>
+      <aside class="panel reveal">
+        <h3 class="panel-title">Инструменты</h3>
+        <ul class="stack-list">
+          <li><span class="n">01</span> JavaScript · TypeScript</li>
+          <li><span class="n">02</span> Python · PySide</li>
+          <li><span class="n">03</span> C++ · C# · Kotlin</li>
+          <li><span class="n">04</span> HTML · CSS · GitHub Actions</li>
+          <li><span class="n">05</span> Playnite SDK · Steam Web API</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ---------------------------- СВЯЗЬ ------------------------------ -->
+  <section class="section" id="contact">
+    <div class="section-head">
+      <span class="idx">04</span>
+      <h2>Связь</h2>
+      <span class="note">быстрее всего — Telegram</span>
+    </div>
+
+    <div class="contacts reveal">
+      <a class="contact" href="https://t.me/Keb04w" target="_blank" rel="noopener">
+        <span class="k">Telegram</span>
+        <div class="v">@Keb04w</div>
+        <div class="h">Отвечаю быстрее всего</div>
+      </a>
+      <a class="contact" href="https://github.com/Stintik-123" target="_blank" rel="noopener">
+        <span class="k">GitHub</span>
+        <div class="v">Stintik-123</div>
+        <div class="h">Исходники всех проектов</div>
+      </a>
+      <a class="contact" href="https://gitlab.com/Stintik-123" target="_blank" rel="noopener">
+        <span class="k">GitLab</span>
+        <div class="v">Зеркала</div>
+        <div class="h">Резервные копии проектов</div>
+      </a>
+      <button class="contact" id="copyMail" type="button" data-mail="stintikvpn@proton.me" style="text-align:left;cursor:pointer;border:0;font:inherit">
+        <span class="k">Почта</span>
+        <div class="v">stintikvpn@proton.me</div>
+        <div class="h">Нажми, чтобы скопировать</div>
+      </button>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span>© <span id="year">2026</span> Stintik</span>
+    <span>Ульяновск, Россия</span>
+    <span class="year">Сделано вручную · без шаблонов</span>
   </footer>
 
 </main>
 
-<script src="app.js" defer></script>
+<div class="copy-note" id="copyNote" role="status" aria-live="polite">Скопировано</div>
+
+<script src="app.js?v=2" defer></script>
 </body>
 </html>

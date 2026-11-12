@@ -1,0 +1,5 @@
+node_modules/
+.shots/
+.shots-personal/
+*.log
+.DS_Store

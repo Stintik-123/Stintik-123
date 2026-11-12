@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://stintik-123.github.io/Stintik-123/sitemap.xml

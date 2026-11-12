@@ -1,80 +1,105 @@
-/* stintik — вход по вопросу. Ответ хранится локально. */
+/* stintik — личная страница. Шапка, появление блоков, активная навигация, копирование почты. */
 (() => {
-  const gate = document.getElementById('gate');
-  const gateList = document.getElementById('gateList');
-  const foot = document.getElementById('foot');
-  const footAnswer = document.getElementById('footAnswer');
-  const resetBtn = document.getElementById('resetGate');
-  const yearEl = document.getElementById('year');
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const views = {
-    friend: document.getElementById('view-friend'),
-    stranger: document.getElementById('view-stranger'),
+  // анимация появления — только при работающем JS, иначе контент виден сразу
+  document.documentElement.classList.add('js');
+
+  /* ------------------------------ год ------------------------------ */
+  const yearEl = $('#year');
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+  /* --------------------------- шапка: тень --------------------------- */
+  const header = $('#header');
+  const onScroll = () => {
+    if (header) header.classList.toggle('is-stuck', window.scrollY > 12);
   };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
 
-  const LABELS = {
-    friend: 'от знакомого',
-    stranger: 'просто зашёл',
-  };
-
-  const setYear = () => {
-    if (yearEl) yearEl.textContent = String(new Date().getFullYear());
-  };
-
-  const show = (answer, label) => {
-    gate.hidden = true;
-    Object.entries(views).forEach(([key, el]) => {
-      if (el) el.hidden = key !== answer;
+  /* --------------------------- мобильное меню --------------------------- */
+  const nav = $('#nav');
+  const burger = $('#burger');
+  if (burger && nav) {
+    burger.addEventListener('click', () => {
+      const open = nav.classList.toggle('is-open');
+      burger.setAttribute('aria-expanded', String(open));
+      burger.textContent = open ? '✕' : '☰';
     });
-    if (foot) {
-      foot.hidden = false;
-      footAnswer.textContent = `ответ: ${label}`;
-    }
-    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
-    const heading = views[answer]?.querySelector('h1');
-    if (heading) {
-      heading.setAttribute('tabindex', '-1');
-      heading.focus({ preventScroll: true });
-    }
-  };
+    $$('a', nav).forEach((a) =>
+      a.addEventListener('click', () => {
+        nav.classList.remove('is-open');
+        burger.setAttribute('aria-expanded', 'false');
+        burger.textContent = '☰';
+      })
+    );
+  }
 
-  const restore = () => {
-    let saved = null;
-    try {
-      saved = JSON.parse(localStorage.getItem('gate') || 'null');
-    } catch {
-      saved = null;
-    }
-    if (saved && views[saved.answer]) {
-      show(saved.answer, saved.label || LABELS[saved.answer]);
-      return true;
-    }
-    return false;
-  };
-
-  gateList?.addEventListener('click', (event) => {
-    const button = event.target.closest('button[data-answer]');
-    if (!button) return;
-    const answer = button.dataset.answer;
-    const label = button.dataset.label || LABELS[answer];
-    localStorage.setItem('gate', JSON.stringify({ answer, label }));
-    show(answer, label);
-  });
-
-  resetBtn?.addEventListener('click', () => {
-    localStorage.removeItem('gate');
-    Object.values(views).forEach((el) => {
-      if (el) el.hidden = true;
+  /* ------------------------- появление блоков ------------------------- */
+  const revealables = $$('.reveal');
+  if (reducedMotion || !('IntersectionObserver' in window)) {
+    revealables.forEach((el) => el.classList.add('is-in'));
+  } else {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-in');
+          io.unobserve(entry.target);
+        });
+      },
+      { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
+    );
+    revealables.forEach((el, i) => {
+      el.style.transitionDelay = Math.min(i % 4, 3) * 70 + 'ms';
+      io.observe(el);
     });
-    if (foot) foot.hidden = true;
-    gate.hidden = false;
-    window.scrollTo({ top: 0, behavior: 'auto' });
-    gate.querySelector('h1')?.focus?.({ preventScroll: true });
-  });
+  }
 
-  setYear();
-  if (!restore()) {
-    gate.hidden = false;
-    if (foot) foot.hidden = true;
+  /* ------------------------ активная навигация ------------------------ */
+  const sections = $$('main section[id]');
+  const navLinks = $$('#nav a[href^="#"]');
+  if (sections.length && navLinks.length && 'IntersectionObserver' in window) {
+    const spy = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const id = '#' + entry.target.id;
+          navLinks.forEach((link) => {
+            link.classList.toggle('is-active', link.getAttribute('href') === id);
+          });
+        });
+      },
+      { rootMargin: '-45% 0px -50% 0px' }
+    );
+    sections.forEach((s) => spy.observe(s));
+  }
+
+  /* -------------------------- копирование почты -------------------------- */
+  const copyBtn = $('#copyMail');
+  const note = $('#copyNote');
+  let noteTimer = null;
+
+  const showNote = (text) => {
+    if (!note) return;
+    note.textContent = text;
+    note.classList.add('is-on');
+    clearTimeout(noteTimer);
+    noteTimer = setTimeout(() => note.classList.remove('is-on'), 2000);
+  };
+
+  if (copyBtn) {
+    copyBtn.addEventListener('click', async () => {
+      const mail = copyBtn.dataset.mail || '';
+      try {
+        await navigator.clipboard.writeText(mail);
+        showNote('Скопировано: ' + mail);
+      } catch {
+        // Clipboard API может быть недоступен без https — показываем адрес
+        showNote(mail);
+      }
+    });
   }
 })();
