@@ -1,0 +1,12 @@
+import fs from 'node:fs';
+const h = fs.readFileSync('index.html', 'utf8');
+const ids = [...h.matchAll(/<section class="section" id="([a-z]+)"/g)].map((m) => m[1]);
+console.log('секции:', ids.join(', '));
+console.log('дублей id:', ids.length - new Set(ids).size);
+console.log('section open:', (h.match(/<section/g) || []).length, 'close:', (h.match(/<\/section>/g) || []).length);
+console.log('div open:', (h.match(/<div/g) || []).length, 'close:', (h.match(/<\/div>/g) || []).length);
+const navs = [...h.matchAll(/<nav[\s\S]*?<\/nav>/g)].map((m) => m[0]);
+const links = [...(navs[0] || '').matchAll(/href="#([a-z]+)"/g)].map((m) => m[1]);
+console.log('навигация:', links.join(', '));
+const missing = links.filter((id) => !ids.includes(id));
+console.log('битых якорей в меню:', missing.length ? missing.join(', ') : 'нет');
