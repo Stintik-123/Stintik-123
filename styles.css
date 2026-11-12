@@ -1,0 +1,269 @@
+/* stintik — личная страница. Чёрное поле, один акцент, крупный шрифт. */
+
+:root {
+  --bg: #0A0A0B;
+  --ink: #F2F2F0;
+  --muted: #8A8A85;
+  --dim: #C9C9C4;
+  --accent: #FF4B2B;
+  --line: rgba(242, 242, 240, 0.14);
+  --line-strong: rgba(242, 242, 240, 0.28);
+  --mono: "JetBrains Mono", "Cascadia Mono", Consolas, monospace;
+  --sans: "Inter", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* подпись: косые линии в углу, как на плакате */
+.stripes {
+  position: fixed;
+  top: -14vh;
+  right: -14vw;
+  width: 42vw;
+  height: 72vh;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    118deg,
+    transparent 0 26px,
+    var(--accent) 26px 28px
+  );
+  opacity: 0.34;
+  -webkit-mask-image: linear-gradient(200deg, #000 0%, transparent 58%);
+  mask-image: linear-gradient(200deg, #000 0%, transparent 58%);
+  z-index: 0;
+}
+
+.topline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: clamp(40px, 8vh, 72px);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.topline .mark {
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--line-strong);
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  font-size: 12px;
+  letter-spacing: 0;
+}
+
+.shell {
+  position: relative;
+  z-index: 1;
+  width: min(920px, 100%);
+  margin: 0 auto;
+  padding: clamp(48px, 9vh, 96px) clamp(20px, 5vw, 40px) 120px;
+}
+
+.label {
+  margin: 0 0 clamp(24px, 4vh, 40px);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.gate-title,
+.big {
+  margin: 0;
+  font-size: clamp(42px, 8.4vw, 86px);
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+  font-weight: 700;
+}
+
+.big { margin-bottom: 44px; }
+
+.gate-sub {
+  margin: 24px 0 0;
+  max-width: 44ch;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+/* ---------- список вариантов входа ---------- */
+
+.gate-list {
+  list-style: none;
+  margin: clamp(40px, 7vh, 64px) 0 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+
+.gate-list li { border-bottom: 1px solid var(--line); }
+
+.gate-list button {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 46px 1fr 28px;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 2px;
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: padding-left 0.18s ease, color 0.18s ease;
+}
+
+.gate-list button:hover,
+.gate-list button:focus-visible {
+  padding-left: 14px;
+  color: var(--accent);
+}
+
+.gate-list .num,
+.num {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.gate-list .txt { font-size: clamp(20px, 3vw, 27px); letter-spacing: -0.02em; }
+
+.arrow { color: var(--muted); transition: transform 0.18s ease, color 0.18s ease; }
+.gate-list button:hover .arrow { transform: translateX(6px); color: var(--accent); }
+
+.gate-note {
+  margin: clamp(32px, 6vh, 52px) 0 0;
+  max-width: 52ch;
+  font-size: 13.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--line-strong);
+  padding-left: 14px;
+}
+
+/* ---------- текстовые блоки ---------- */
+
+.prose { max-width: 64ch; }
+.prose p { margin: 0 0 18px; color: var(--dim); font-size: 17.5px; line-height: 1.62; }
+
+.h2 {
+  margin: 72px 0 22px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.inline-list { color: var(--muted); font-size: 15.5px; line-height: 1.9; margin: 0; }
+
+/* ---------- строки-ссылки ---------- */
+
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+
+.rows li { border-bottom: 1px solid var(--line); }
+
+.rows a {
+  display: grid;
+  grid-template-columns: 46px 1fr 28px;
+  align-items: baseline;
+  gap: 18px;
+  padding: 20px 2px;
+  color: inherit;
+  text-decoration: none;
+  transition: padding-left 0.18s ease, color 0.18s ease;
+}
+
+.rows a:hover,
+.rows a:focus-visible { padding-left: 14px; }
+
+.rows a:hover b { color: var(--accent); }
+.rows a:hover .arrow { transform: translateX(6px); color: var(--accent); }
+
+.row-main { display: block; }
+.row-main b { font-weight: 600; font-size: 19px; letter-spacing: -0.02em; transition: color 0.18s ease; }
+.row-main em { display: block; font-style: normal; color: var(--muted); font-size: 14.5px; margin-top: 2px; }
+
+.rows-tight a { padding: 16px 2px; }
+
+.prompt-line {
+  margin: 56px 0 0;
+  padding-left: 16px;
+  border-left: 2px solid var(--accent);
+  color: var(--dim);
+  font-size: 15.5px;
+}
+
+/* ---------- подвал ---------- */
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  margin-top: 96px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-transform: lowercase;
+}
+
+.foot-year { margin-left: auto; }
+
+.link {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+/* ---------- фокус и движение ---------- */
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+[hidden] { display: none !important; }
+
+@media (max-width: 620px) {
+  body { font-size: 16px; }
+  .gate-list button,
+  .rows a { grid-template-columns: 32px 1fr 22px; gap: 12px; padding: 18px 2px; }
+  .row-main b { font-size: 17.5px; }
+  .row-main em { font-size: 13.5px; }
+  .stripes { width: 70vw; opacity: 0.32; }
+  .foot { margin-top: 64px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
