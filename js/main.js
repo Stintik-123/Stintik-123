@@ -1,7 +1,8 @@
-/* Сайт Stintik — интерактив: 3D-объект на фоне, прелоадер, плавный скролл,
+/* Сайт Stintik — интерактив: 3D-объект на фоне, mesh-шейдер, прелоадер, плавный скролл,
    горизонтальная галерея работ, реел, счётчики и курсор.
    Зависимости подключаются в index.html: gsap, ScrollTrigger, lenis, three (importmap). */
 import * as THREE from 'three';
+import { initMesh } from './mesh.js';
 
 const $ = (s, c = document) => c.querySelector(s);
 const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
@@ -10,6 +11,9 @@ const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
 const okGsap = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
 const isMob = () => innerWidth < 821;
 const loader = $('#loader');
+
+/* общая ссылка на Lenis — нужна и в меню, и в навигации */
+let lenisRef = null;
 
 /* =============== общее: часы, меню, копирование почты =============== */
 (function common() {
@@ -21,11 +25,38 @@ const loader = $('#loader');
   tick(); setInterval(tick, 20000);
 
   const burger = $('#burger'), menu = $('#menu');
-  window.closeMenu = () => { menu.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); burger.textContent = 'Меню'; };
+
+  /* точка раскрытия меню — по центру кнопки, чтобы «круг» расходился из-под неё */
+  const setOrigin = () => {
+    if (!burger || !menu) return;
+    const r = burger.getBoundingClientRect();
+    if (!r.width || !r.height) return;   // на десктопе бургер скрыт — оставляем дефолт из CSS
+    menu.style.setProperty('--ox', (r.left + r.width / 2) + 'px');
+    menu.style.setProperty('--oy', (r.top + r.height / 2) + 'px');
+  };
+  setOrigin();
+  addEventListener('resize', setOrigin, { passive: true });
+
+  const lockScroll = on => {
+    document.documentElement.classList.toggle('lock', on);
+    if (!lenisRef) return;
+    on ? lenisRef.stop() : lenisRef.start();
+  };
+
+  window.closeMenu = () => {
+    if (!menu || !menu.classList.contains('open')) return;
+    menu.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    burger.textContent = 'Меню';
+    lockScroll(false);
+  };
+
   burger.addEventListener('click', () => {
     const open = menu.classList.toggle('open');
     burger.setAttribute('aria-expanded', String(open));
     burger.textContent = open ? 'Закрыть' : 'Меню';
+    lockScroll(open);
+    if (open) setOrigin();
   });
 
   const toast = $('#toast'); let tt;
@@ -128,10 +159,13 @@ function initScene() {
         gl_FragColor = vec4(col, 1.0);
       }`
   });
-  const blob = new THREE.Mesh(new THREE.IcosahedronGeometry(1.25, 48), mat);
+
+  /* на телефоне геометрия и частицы дешевле — там каждый кадр считается на батарейке */
+  const mob = isMob();
+  const blob = new THREE.Mesh(new THREE.IcosahedronGeometry(1.25, mob ? 18 : 48), mat);
   rig.add(blob);
 
-  const N = 1500, pos = new Float32Array(N * 3);
+  const N = mob ? 520 : 1500, pos = new Float32Array(N * 3);
   for (let i = 0; i < N; i++) {
     const r = 2.3 + Math.random() * 3.4, th = Math.random() * Math.PI * 2, ph = Math.acos(2 * Math.random() - 1);
     pos[i * 3] = r * Math.sin(ph) * Math.cos(th); pos[i * 3 + 1] = r * Math.sin(ph) * Math.sin(th); pos[i * 3 + 2] = r * Math.cos(ph);
@@ -145,9 +179,10 @@ function initScene() {
   const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
   let worldW = 1, worldH = 1, vel = 0, boost = 0, cleared = false;
 
+  let maxDpr = mob ? 1.25 : 1.75;
   function resize() {
     const w = innerWidth, h = innerHeight;
-    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
+    renderer.setPixelRatio(Math.min(devicePixelRatio, maxDpr));
     renderer.setSize(w, h, false);
     camera.aspect = w / h; camera.updateProjectionMatrix();
     worldH = 2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z;
@@ -155,10 +190,24 @@ function initScene() {
   }
   resize();
   addEventListener('resize', resize);
-  addEventListener('pointermove', e => { mouse.tx = e.clientX / innerWidth * 2 - 1; mouse.ty = -(e.clientY / innerHeight * 2 - 1); }, { passive: true });
+  if (finePointer) {
+    addEventListener('pointermove', e => { mouse.tx = e.clientX / innerWidth * 2 - 1; mouse.ty = -(e.clientY / innerHeight * 2 - 1); }, { passive: true });
+  }
+
+  /* софтверный рендер (SwiftShader/llvmpipe) — это тесты, а не телефон: деградацию не включаем */
+  let softwareGL = false;
+  try {
+    const gl = renderer.getContext();
+    const ext = gl.getExtension('WEBGL_debug_renderer_info');
+    const name = ext ? String(gl.getParameter(ext.UNMASKED_RENDERER_WEBGL)) : '';
+    softwareGL = /swiftshader|llvmpipe|software|basic render/i.test(name);
+  } catch (e) { /* не критично */ }
 
   const clock = new THREE.Clock();
+  let frames = 0, fpsAt = performance.now(), degraded = 0;
+
   renderer.setAnimationLoop(() => {
+    if (document.hidden) return;                     // не жжём батарею в фоновой вкладке
     const t = clock.getElapsedTime();
     mouse.x += (mouse.tx - mouse.x) * 0.05; mouse.y += (mouse.ty - mouse.y) * 0.05;
     boost += (Math.min(Math.abs(vel) / 3500, 0.45) - boost) * 0.08;
@@ -174,9 +223,23 @@ function initScene() {
     rig.rotation.x = mouse.y * 0.45 + scrollY * 0.0005;
     points.rotation.y = -t * 0.025;
     renderer.render(scene, camera);
+
+    /* если телефон не тянет — потихоньку снижаем разрешение рендера */
+    frames++;
+    const now = performance.now();
+    if (now - fpsAt > 2500) {
+      const fps = frames / ((now - fpsAt) / 1000);
+      frames = 0; fpsAt = now;
+      if (!softwareGL && fps < 32 && degraded < 2) {
+        degraded++;
+        maxDpr = Math.max(0.75, maxDpr * 0.7);
+        renderer.setPixelRatio(Math.min(devicePixelRatio, maxDpr));
+        renderer.setSize(innerWidth, innerHeight, false);
+      }
+    }
   });
 
-  return { state, setVelocity: v => { vel = v; } };
+  return { state, setVelocity: v => { vel = v; }, degraded: () => degraded };
 }
 
 /* =============== фоллбэк для видео: генеративный градиент =============== */
@@ -200,7 +263,8 @@ function initFx() {
         c.fillStyle = g; c.fillRect(0, 0, w, h);
       }
     }
-    requestAnimationFrame(draw);
+    if (visible || hasVideo) requestAnimationFrame(draw);   // не крутим цикл впустую
+    else running = false;
   }
   running = true; requestAnimationFrame(draw);
 
@@ -211,18 +275,21 @@ function initFx() {
   new IntersectionObserver(es => {
     visible = es[0].isIntersecting;
     if (hasVideo) { visible ? video.play().catch(() => {}) : video.pause(); }
+    if (visible && !running) { running = true; requestAnimationFrame(draw); }
   }, { threshold: 0.05 }).observe($('#reel'));
 }
 
 /* =============== запуск =============== */
 const scene = initScene();
 initFx();
+const mesh = initMesh();
 
 if (!okGsap || reduce) {
   loader.style.display = 'none';
   document.documentElement.classList.remove('lock');
   $$('.statement .w').forEach(w => w.style.opacity = 1);
-  if (scene) { scene.state.s = 1; scene.state.y = isMob() ? 0.2 : 0.02; }
+  if (scene) { scene.state.s = isMob() ? 0.42 : 1; scene.state.y = isMob() ? 0.46 : 0.02; }
+  if (mesh) mesh.set(isMob() ? 0.45 : 0.55);
   $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
     const t = $(a.getAttribute('href')); if (t) { e.preventDefault(); closeMenu(); t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); }
   }));
@@ -236,19 +303,26 @@ function main() {
   document.documentElement.classList.add('lock');
 
   /* --- плавный скролл --- */
-  let lenis = null;
   if (window.Lenis) {
-    lenis = new Lenis({ lerp: 0.085, smoothWheel: true });
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add(t => lenis.raf(t * 1000));
+    lenisRef = new Lenis({
+      lerp: 0.085,
+      smoothWheel: true,
+      /* на тач-устройствах оставляем нативный скролл — он быстрее и привычнее */
+      syncTouch: false,
+      touchMultiplier: 1.4,
+    });
+    lenisRef.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenisRef.raf(t * 1000));
     gsap.ticker.lagSmoothing(0);
-    lenis.stop();
+    lenisRef.stop();
   }
+
+  const navOffset = () => (isMob() ? 64 : 92);
   $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
     const id = a.getAttribute('href'); if (id.length < 2) return;
     const t = $(id); if (!t) return;
     e.preventDefault(); closeMenu();
-    if (lenis) lenis.scrollTo(t, { duration: 1.8, easing: x => 1 - Math.pow(1 - x, 4) });
+    if (lenisRef) lenisRef.scrollTo(t, { duration: isMob() ? 1.1 : 1.8, offset: -navOffset(), easing: x => 1 - Math.pow(1 - x, 4) });
     else t.scrollIntoView({ behavior: 'smooth' });
   }));
 
@@ -266,37 +340,47 @@ function main() {
     });
   }
 
-  /* --- пресеты 3D-объекта по секциям --- */
+  /* --- пресеты 3D-объекта и фона по секциям (bg — прозрачность mesh-фона) --- */
   const base = {
-    hero: { x: 0, y: 0.02, s: 1, amp: 0.32, o: 1 },
-    work: { x: 0.84, y: 0.56, s: 0.28, amp: 0.22, o: 1 },
-    reel: { x: 0, y: 0, s: 0.0001, amp: 0.2, o: 1 },
-    about: { x: 0.74, y: 0.02, s: 0.6, amp: 0.5, o: 0.38 },
-    hardware: { x: 0.74, y: 0.12, s: 0.42, amp: 0.42, o: 0.4 },
-    media: { x: 1.12, y: 0.05, s: 0.3, amp: 0.46, o: 0.3 },
-    stack: { x: 0.74, y: -0.1, s: 0.5, amp: 0.38, o: 0.45 },
-    contact: { x: 0, y: 0.12, s: 1.2, amp: 0.55, o: 1 }
+    hero: { x: 0, y: 0.02, s: 1, amp: 0.32, o: 1, bg: 0.55 },
+    work: { x: 0.84, y: 0.56, s: 0.28, amp: 0.22, o: 1, bg: 0.20 },
+    reel: { x: 0, y: 0, s: 0.0001, amp: 0.2, o: 1, bg: 0.08 },
+    about: { x: 0.74, y: 0.02, s: 0.6, amp: 0.5, o: 0.38, bg: 0.18 },
+    hardware: { x: 0.74, y: 0.12, s: 0.42, amp: 0.42, o: 0.4, bg: 0.14 },
+    media: { x: 1.12, y: 0.05, s: 0.3, amp: 0.46, o: 0.3, bg: 0.14 },
+    stack: { x: 0.74, y: -0.1, s: 0.5, amp: 0.38, o: 0.45, bg: 0.16 },
+    contact: { x: 0, y: 0.12, s: 1.2, amp: 0.55, o: 1, bg: 0.45 }
+  };
+  /* на телефоне текст занимает всю ширину — блоб уводим в свободные углы и приглушаем */
+  const mobBase = {
+    hero:     { x: 0,    y: 0.46, s: 0.42, o: 1,    bg: 0.50 },
+    work:     { x: 0.72, y: -0.72, s: 0.18, o: 0.9,  bg: 0.16 },
+    reel:     { x: 0,    y: 0,    s: 0.0001, o: 1,  bg: 0.07 },
+    about:    { x: 0.22, y: -0.66, s: 0.30, o: 0.26, bg: 0.16 },
+    hardware: { x: 0.34, y: -0.70, s: 0.28, o: 0.22, bg: 0.12 },
+    media:    { x: 0.62, y: -0.70, s: 0.26, o: 0.22, bg: 0.12 },
+    stack:    { x: 0.34, y: -0.70, s: 0.30, o: 0.26, bg: 0.14 },
+    contact:  { x: 0.10, y: 0.92, s: 0.27, o: 0.5,  bg: 0.34 }
   };
   const P = id => {
     const p = { ...base[id] };
     if (isMob()) {
-      p.x *= 0.25; p.s *= 0.7;
-      if (id === 'hero') p.y = 0.22;
-      if (id === 'about') p.y = 0.5;
-      if (id === 'hardware') p.y = 0.55;
-      if (id === 'media') { p.x = 0.6; p.y = 0.6; }
-      if (id === 'stack') p.y = 0.55;
-      if (id === 'contact') p.y = 0.4;
-      if (id === 'work') { p.x = 0.7; p.y = 0.75; }
+      const m = mobBase[id] || {};
+      p.x = m.x; p.y = m.y; p.s = m.s; p.o = m.o; p.bg = m.bg;
     }
     return p;
   };
+
+  const meshState = { o: 0 };
+  const applyMesh = () => { if (mesh) mesh.set(meshState.o); };
+
   let current = 'hero', locked = true;
   const goto = id => {
     current = id;
     if (locked || !scene) return;
     const p = P(id);
     gsap.to(scene.state, { x: p.x, y: p.y, s: p.s, amp: p.amp, o: p.o, duration: 1.5, ease: 'power3.inOut', overwrite: true });
+    gsap.to(meshState, { o: p.bg, duration: 1.4, ease: 'power2.out', overwrite: true, onUpdate: applyMesh });
   };
 
   /* --- начальные состояния --- */
@@ -307,12 +391,13 @@ function main() {
   const letters = $$('#loaderWord span');
   gsap.set(letters, { yPercent: 115 });
 
-  /* --- прелоадер --- */
+  /* --- прелоадер (на телефоне короче) --- */
+  const small = isMob();
   const counter = $('#count'), bar = $('#bar'), prog = { v: 0 };
   const loadTl = gsap.timeline();
-  loadTl.to(letters, { yPercent: 0, duration: 1.1, stagger: 0.07, ease: 'expo.out' }, 0.1)
+  loadTl.to(letters, { yPercent: 0, duration: small ? 0.8 : 1.1, stagger: small ? 0.05 : 0.07, ease: 'expo.out' }, 0.1)
     .to(prog, {
-      v: 100, duration: 2.5, ease: 'power2.inOut',
+      v: 100, duration: small ? 1.5 : 2.5, ease: 'power2.inOut',
       onUpdate: () => { counter.textContent = String(Math.round(prog.v)).padStart(3, '0'); bar.style.transform = 'scaleX(' + prog.v / 100 + ')'; }
     }, 0);
 
@@ -321,7 +406,7 @@ function main() {
       document.fonts ? document.fonts.ready : Promise.resolve(),
       document.readyState === 'complete' ? Promise.resolve() : new Promise(r => addEventListener('load', r, { once: true }))
     ]),
-    new Promise(r => setTimeout(r, 6000))
+    new Promise(r => setTimeout(r, small ? 3000 : 6000))
   ]);
 
   Promise.all([new Promise(r => loadTl.eventCallback('onComplete', r)), ready]).then(() => {
@@ -335,11 +420,12 @@ function main() {
 
   function intro() {
     document.documentElement.classList.remove('lock');
-    if (lenis) lenis.start();
+    if (lenisRef) lenisRef.start();
     ScrollTrigger.refresh();
     gsap.to(heroLines, { yPercent: 0, rotate: 0, duration: 1.5, stagger: 0.11, ease: 'expo.out' });
     gsap.to('.hero-fade', { opacity: 1, y: 0, duration: 1.2, stagger: 0.1, delay: 0.5, ease: 'power3.out' });
     gsap.to('#nav', { opacity: 1, y: 0, duration: 1.2, delay: 0.3, ease: 'power3.out' });
+    if (mesh) mesh.set(P('hero').bg);
     if (scene) {
       const p = P('hero');
       scene.state.x = p.x; scene.state.y = p.y; scene.state.amp = p.amp;
@@ -383,7 +469,7 @@ function main() {
   const cp0 = isMob() ? 'inset(30vh 7vw 30vh 7vw round 24px)' : 'inset(24vh 28vw 24vh 28vw round 32px)';
   gsap.set('#reelUi', { opacity: 0, y: 40 });
   /* fromTo с обеими строками: иначе браузер сворачивает clip-path в короткую запись и значения интерполируются со сдвигом */
-  gsap.timeline({ scrollTrigger: { trigger: '#reelPin', start: 'top top', end: '+=150%', scrub: true, pin: true, anticipatePin: 1 } })
+  gsap.timeline({ scrollTrigger: { trigger: '#reelPin', start: 'top top', end: isMob() ? '+=105%' : '+=150%', scrub: true, pin: true, anticipatePin: 1 } })
     .fromTo('#reelFrame', { clipPath: cp0 }, { clipPath: 'inset(0vh 0vw 0vh 0vw round 0px)', ease: 'none', duration: 1 }, 0)
     .fromTo('#reelMedia', { scale: 1.35 }, { scale: 1, ease: 'none', duration: 1 }, 0)
     .to('.reel-title', { scale: 1.12, opacity: 0.4, ease: 'none', duration: 1 }, 0)
@@ -396,7 +482,8 @@ function main() {
 
   gsap.fromTo('#photo', { clipPath: 'inset(100% 0 0 0 round 22px)' }, { clipPath: 'inset(0% 0 0 0 round 22px)', duration: 1.4, ease: 'expo.out', scrollTrigger: { trigger: '#photo', start: 'top 85%' } });
   gsap.fromTo('#photo img, #photo .fb', { yPercent: -4 }, { yPercent: 4, ease: 'none', scrollTrigger: { trigger: '#photo', start: 'top bottom', end: 'bottom top', scrub: true } });
-  gsap.from('.about-text > p, .principles li', { y: 36, opacity: 0, duration: 1, stagger: 0.08, ease: 'power3.out', scrollTrigger: { trigger: '.about-text', start: 'top 80%' } });
+  gsap.from('.about-text > p', { y: 36, opacity: 0, duration: 1, stagger: 0.08, ease: 'power3.out', scrollTrigger: { trigger: '.about-text', start: 'top 80%' } });
+  gsap.from('.principles.bento li', { y: 36, opacity: 0, duration: 1, stagger: 0.08, ease: 'power3.out', scrollTrigger: { trigger: '.principles.bento', start: 'top 88%' } });
 
   /* железо и игры с кино */
   gsap.from('.spec-grid > div', { y: 36, opacity: 0, duration: 1, stagger: 0.06, ease: 'power3.out', scrollTrigger: { trigger: '.spec-grid', start: 'top 82%' } });
@@ -420,5 +507,5 @@ function main() {
   });
 
   addEventListener('load', () => ScrollTrigger.refresh());
-  let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { if (scene && !locked) { const p = P(current); Object.assign(scene.state, { x: p.x, y: p.y, s: p.s, amp: p.amp, o: p.o }); } }, 200); });
+  let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { if (scene && !locked) { const p = P(current); Object.assign(scene.state, { x: p.x, y: p.y, s: p.s, amp: p.amp, o: p.o }); } ScrollTrigger.refresh(); }, 200); });
 }

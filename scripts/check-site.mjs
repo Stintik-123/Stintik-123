@@ -1,5 +1,5 @@
 /* Проверка интерактива личной страницы: node scripts/check-site.mjs */
-import { chromium } from 'playwright';
+import { launch } from './browser.mjs';
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -31,7 +31,7 @@ const server = http.createServer((req, res) => {
 await new Promise((r) => server.listen(0, '127.0.0.1', r));
 const BASE = `http://127.0.0.1:${server.address().port}`;
 
-const browser = await chromium.launch();
+const browser = await launch();
 const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
 const errors = [];
 page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
@@ -45,6 +45,12 @@ const check = (ok, name) => {
 };
 
 await page.goto(BASE + '/index.html', { waitUntil: 'networkidle' });
+// прелоадер живёт на таймлайне — дожидаемся, пока он уйдёт
+await page.waitForFunction(
+  () => { const l = document.getElementById('loader'); return !l || getComputedStyle(l).display === 'none'; },
+  null,
+  { timeout: 90000 }
+).catch(() => {});
 await page.waitForTimeout(1500);
 
 check((await page.$$('.card')).length === 5, '5 карточек проектов');
@@ -72,7 +78,12 @@ const split = await page.evaluate(() => ({
 check(split.css && split.js, 'стили и скрипты в отдельных файлах');
 check(split.inlineStyle === 0 && split.inlineModule === 0, 'в index.html нет инлайновых стилей и модулей');
 
-// превью проектов
+// превью проектов (грузятся лениво — сначала прокручиваем страницу)
+await page.evaluate(async () => {
+  const h = document.body.scrollHeight;
+  for (let y = 0; y < h; y += 400) { window.scrollTo(0, y); await new Promise(r => setTimeout(r, 60)); }
+});
+await page.waitForTimeout(1200);
 const broken = await page.evaluate(() =>
   [...document.querySelectorAll('.card img')].filter((i) => !i.complete || !i.naturalWidth).map((i) => i.src)
 );
@@ -131,6 +142,11 @@ check(contactVisible, 'переход по якорю работает');
 // мобильный: меню и отсутствие горизонтального скролла
 const mobile = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
 await mobile.goto(BASE + '/index.html', { waitUntil: 'networkidle' });
+await mobile.waitForFunction(
+  () => { const l = document.getElementById('loader'); return !l || getComputedStyle(l).display === 'none'; },
+  null,
+  { timeout: 90000 }
+).catch(() => {});
 await mobile.waitForTimeout(1200);
 await mobile.click('#burger');
 await mobile.waitForTimeout(500);

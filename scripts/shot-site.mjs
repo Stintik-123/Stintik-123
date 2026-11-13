@@ -1,5 +1,5 @@
 /* Локальный сервер + скриншоты личной страницы: node scripts/shot-site.mjs */
-import { chromium } from 'playwright';
+import { launch } from './browser.mjs';
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -39,14 +39,20 @@ await new Promise((r) => server.listen(0, '127.0.0.1', r));
 const port = server.address().port;
 const BASE = `http://127.0.0.1:${port}`;
 
-const browser = await chromium.launch();
+const browser = await launch();
 const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
 const errors = [];
 page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
 page.on('pageerror', (e) => errors.push(String(e)));
 
 await page.goto(BASE + '/index.html', { waitUntil: 'networkidle' });
-await page.waitForTimeout(4500);
+// ждём, пока прелоадер реально уйдёт — на слабой машине таймлайн идёт медленно
+await page.waitForFunction(
+  () => { const l = document.getElementById('loader'); return !l || getComputedStyle(l).display === 'none'; },
+  null,
+  { timeout: 90000 }
+).catch(() => console.log('прелоадер не скрылся'));
+await page.waitForTimeout(3000);
 await page.screenshot({ path: path.join(OUT, '01-hero.png') });
 console.log('01-hero');
 
@@ -67,8 +73,13 @@ for (const [sel, file] of shots) {
 // мобильный
 const mobile = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
 await mobile.goto(BASE + '/index.html', { waitUntil: 'networkidle' });
-await mobile.waitForTimeout(4500);
-await mobile.screenshot({ path: path.join(OUT, '07-mobile.png') });
+await mobile.waitForFunction(
+  () => { const l = document.getElementById('loader'); return !l || getComputedStyle(l).display === 'none'; },
+  null,
+  { timeout: 90000 }
+).catch(() => console.log('прелоадер не скрылся'));
+await mobile.waitForTimeout(3000);
+await mobile.screenshot({ path: path.join(OUT, '07-mobile.png'), timeout: 60000 });
 console.log('07-mobile');
 await mobile.evaluate(() => document.querySelector('#hardware')?.scrollIntoView());
 await mobile.waitForTimeout(1200);
