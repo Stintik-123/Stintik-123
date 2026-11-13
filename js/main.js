@@ -273,7 +273,7 @@ function main() {
     reel: { x: 0, y: 0, s: 0.0001, amp: 0.2, o: 1 },
     about: { x: 0.74, y: 0.02, s: 0.6, amp: 0.5, o: 0.38 },
     hardware: { x: 0.74, y: 0.12, s: 0.42, amp: 0.42, o: 0.4 },
-    media: { x: -0.7, y: 0.1, s: 0.5, amp: 0.46, o: 0.42 },
+    media: { x: 1.12, y: 0.05, s: 0.3, amp: 0.46, o: 0.3 },
     stack: { x: 0.74, y: -0.1, s: 0.5, amp: 0.38, o: 0.45 },
     contact: { x: 0, y: 0.12, s: 1.2, amp: 0.55, o: 1 }
   };
@@ -284,7 +284,7 @@ function main() {
       if (id === 'hero') p.y = 0.22;
       if (id === 'about') p.y = 0.5;
       if (id === 'hardware') p.y = 0.55;
-      if (id === 'media') { p.x = -0.6; p.y = 0.6; }
+      if (id === 'media') { p.x = 0.6; p.y = 0.6; }
       if (id === 'stack') p.y = 0.55;
       if (id === 'contact') p.y = 0.4;
       if (id === 'work') { p.x = 0.7; p.y = 0.75; }

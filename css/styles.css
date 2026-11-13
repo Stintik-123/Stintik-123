@@ -244,7 +244,8 @@ section { position: relative; }
 .plain-list li { display: flex; gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid var(--line); font-size: clamp(15px, 1.3vw, 18px); transition: padding .5s var(--ease), color .3s; }
 .plain-list li:hover { padding-left: 12px; color: var(--acc); }
 .plain-list li i { font-style: normal; font: 400 12px/1 var(--mono); color: var(--acc); white-space: nowrap; }
-.plain-list li span.ph-value { color: var(--mut); }
+.plain-list li span { color: var(--mut); }
+.plain-list li span b { color: var(--fg); font-weight: 500; }
 
 /* ---------- stack ---------- */
 .stack { padding: 10vh var(--pad); }
