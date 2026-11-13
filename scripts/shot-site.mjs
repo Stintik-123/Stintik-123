@@ -46,47 +46,43 @@ page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
 page.on('pageerror', (e) => errors.push(String(e)));
 
 await page.goto(BASE + '/index.html', { waitUntil: 'networkidle' });
-await page.waitForTimeout(1500);
+await page.waitForTimeout(4500);
 await page.screenshot({ path: path.join(OUT, '01-hero.png') });
 console.log('01-hero');
 
-// прокрутить всю страницу, чтобы отработал IntersectionObserver
-await page.evaluate(async () => {
-  const step = window.innerHeight * 0.8;
-  for (let y = 0; y < document.body.scrollHeight; y += step) {
-    window.scrollTo(0, y);
-    await new Promise((r) => setTimeout(r, 220));
-  }
-  window.scrollTo(0, 0);
-  await new Promise((r) => setTimeout(r, 700));
-});
-
-await page.screenshot({ path: path.join(OUT, '02-full.png'), fullPage: true });
-console.log('02-full');
-
-// скролл к проектам
-await page.evaluate(() => document.querySelector('#projects')?.scrollIntoView());
-await page.waitForTimeout(1200);
-await page.screenshot({ path: path.join(OUT, '03-projects.png') });
-console.log('03-projects');
+const shots = [
+  ['#work', '02-work.png'],
+  ['#about', '03-about.png'],
+  ['#hardware', '04-hardware.png'],
+  ['#media', '05-media.png'],
+  ['#contact', '06-contact.png'],
+];
+for (const [sel, file] of shots) {
+  await page.evaluate((s) => document.querySelector(s)?.scrollIntoView(), sel);
+  await page.waitForTimeout(1600);
+  await page.screenshot({ path: path.join(OUT, file) });
+  console.log(file);
+}
 
 // мобильный
-const mobile = await browser.newPage({ viewport: { width: 390, height: 844 } });
+const mobile = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
 await mobile.goto(BASE + '/index.html', { waitUntil: 'networkidle' });
+await mobile.waitForTimeout(4500);
+await mobile.screenshot({ path: path.join(OUT, '07-mobile.png') });
+console.log('07-mobile');
+await mobile.evaluate(() => document.querySelector('#hardware')?.scrollIntoView());
 await mobile.waitForTimeout(1200);
-await mobile.screenshot({ path: path.join(OUT, '04-mobile.png') });
-console.log('04-mobile');
+await mobile.screenshot({ path: path.join(OUT, '08-mobile-hardware.png') });
+console.log('08-mobile-hardware');
 
-// проверки
 const check = await page.evaluate(() => {
   const fonts = [...document.fonts].filter((f) => f.status === 'loaded').map((f) => f.family);
   const h1 = document.querySelector('.hero-title');
   return {
     fontsLoaded: [...new Set(fonts)],
     h1Font: getComputedStyle(h1).fontFamily,
-    h1Size: getComputedStyle(h1).fontSize,
-    projects: document.querySelectorAll('.project').length,
-    shots: [...document.querySelectorAll('.project-shot img')].map((i) => ({
+    cards: document.querySelectorAll('.card').length,
+    shots: [...document.querySelectorAll('.card img')].map((i) => ({
       src: i.getAttribute('src'),
       loaded: i.complete && i.naturalWidth > 0,
     })),
