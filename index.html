@@ -24,9 +24,24 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" />
 
-<link rel="stylesheet" href="styles.css?v=2" />
+<link rel="stylesheet" href="styles.css?v=4" />
 </head>
 <body>
+
+<!-- ------------------------------ ИНТРО ------------------------------ -->
+<div class="intro" id="intro" tabindex="-1" role="presentation">
+  <canvas id="introCanvas"></canvas>
+  <div class="intro-inner">
+    <div class="intro-mark" aria-hidden="true">s</div>
+    <div class="intro-title">Stintik</div>
+    <div class="intro-sub">интернет ближе, чем кажется</div>
+    <div class="intro-progress">
+      <div class="intro-bar"><span id="introBar"></span></div>
+      <span class="intro-pct" id="introPct">00</span>
+    </div>
+    <div class="intro-hint">нажми, чтобы пропустить</div>
+  </div>
+</div>
 
 <div class="grid-bg" aria-hidden="true"></div>
 <div class="glow" aria-hidden="true"></div>
@@ -41,8 +56,10 @@
       <a href="#about">Обо мне</a>
       <a href="#projects">Проекты</a>
       <a href="#now">Сейчас</a>
+      <a href="#live">Активность</a>
       <a href="#stack">Стек</a>
       <a href="#contact">Связь</a>
+      <button class="nav-term" id="termBtn" type="button" aria-label="Открыть терминал">~</button>
       <a class="nav-cta" href="https://t.me/Keb04w" target="_blank" rel="noopener">Telegram</a>
     </nav>
     <button class="burger" id="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="nav">☰</button>
@@ -284,10 +301,50 @@
     </div>
   </section>
 
+  <!-- --------------------------- АКТИВНОСТЬ --------------------------- -->
+  <section class="section" id="live">
+    <div class="section-head">
+      <span class="idx">04</span>
+      <h2>Активность</h2>
+      <span class="note">живые данные · <span id="liveClock">--:--:--</span></span>
+    </div>
+
+    <div class="live-stats reveal">
+      <div class="live-stat">
+        <span class="k">Проектов</span>
+        <span class="v" data-count="12">0</span>
+        <span class="h">в репозиториях</span>
+      </div>
+      <div class="live-stat">
+        <span class="k">Звёзд</span>
+        <span class="v" data-count="177">0</span>
+        <span class="h">за всё время</span>
+      </div>
+      <div class="live-stat">
+        <span class="k">Ссылок в каталогах</span>
+        <span class="v" data-count="1847">0</span>
+        <span class="h">каждая проверена</span>
+      </div>
+      <div class="live-stat">
+        <span class="k">Игр в GameVoice</span>
+        <span class="v" data-count="102">0</span>
+        <span class="h">с трейлерами</span>
+      </div>
+    </div>
+
+    <div class="live-graph-box reveal">
+      <div class="live-graph-head">
+        <span class="live-graph-title">Коммиты за год</span>
+        <span class="live-graph-note">график генерируется ботом каждую ночь</span>
+      </div>
+      <div class="live-graph" id="liveGraph"></div>
+    </div>
+  </section>
+
   <!-- ------------------------------ СТЕК ------------------------------ -->
   <section class="section" id="stack">
     <div class="section-head">
-      <span class="idx">04</span>
+      <span class="idx">05</span>
       <h2>Стек</h2>
     </div>
 
@@ -312,7 +369,7 @@
   <!-- ---------------------------- СОЦСЕТИ ---------------------------- -->
   <section class="section" id="contact">
     <div class="section-head">
-      <span class="idx">05</span>
+      <span class="idx">06</span>
       <h2>Соцсети и связь</h2>
       <span class="note">быстрее всего — Telegram</span>
     </div>
@@ -361,6 +418,27 @@
 
 <div class="copy-note" id="copyNote" role="status" aria-live="polite">Скопировано</div>
 
-<script src="app.js?v=2" defer></script>
+<!-- --------------------------- ТЕРМИНАЛ ---------------------------- -->
+<div class="terminal" id="terminal" aria-hidden="true" role="dialog" aria-label="Терминал">
+  <div class="term-panel">
+    <div class="term-bar">
+      <span class="term-dots"><i></i><i></i><i></i></span>
+      <span class="term-title">stintik@site — bash</span>
+      <button class="term-close" id="termClose" type="button" aria-label="Закрыть терминал">✕</button>
+    </div>
+    <div class="term-screen" id="termScreen"></div>
+    <form class="term-input-row" id="termForm">
+      <span class="term-prompt">stintik@site</span><span class="term-prompt-sep">:</span><span class="term-path">~</span><span class="term-prompt-sep">$</span>
+      <input id="termInput" type="text" autocomplete="off" spellcheck="false" aria-label="Ввод команды" />
+    </form>
+  </div>
+</div>
+
+<button class="term-fab" id="termFab" type="button" aria-label="Открыть терминал">
+  <span class="term-fab-icon">&gt;_</span>
+  <span class="term-fab-text" id="termHint">нажми ~ — открыть терминал</span>
+</button>
+
+<script src="js/app.js?v=4" defer></script>
 </body>
 </html>

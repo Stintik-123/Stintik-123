@@ -7,6 +7,20 @@
   // анимация появления — только при работающем JS, иначе контент виден сразу
   document.documentElement.classList.add('js');
 
+  /* --------------------------- модули сайта --------------------------- */
+  import('./terminal.js').then((m) => m.initTerminal()).catch(() => {});
+  import('./live.js').then((m) => m.initLive()).catch(() => {});
+  import('./intro3d.js')
+    .then((m) =>
+      m.initIntro({
+        onDone: () => document.body.classList.add('intro-done'),
+      })
+    )
+    .catch(() => {
+      const intro = $('#intro');
+      if (intro) intro.classList.add('is-gone');
+    });
+
   /* ------------------------------ год ------------------------------ */
   const yearEl = $('#year');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
