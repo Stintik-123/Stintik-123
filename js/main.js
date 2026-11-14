@@ -276,7 +276,7 @@ function initFx() {
     visible = es[0].isIntersecting;
     if (visible) {
       /* ролик весит ~1.5 МБ — качаем его только когда секция реально дошла до экрана */
-      if (!hasVideo && video.preload !== 'auto') { video.preload = 'auto'; video.load(); }
+      if (src && !hasVideo && video.preload !== 'auto') { video.preload = 'auto'; video.load(); }
       else if (hasVideo) video.play().catch(() => {});
     } else if (hasVideo) {
       video.pause();
