@@ -274,7 +274,13 @@ function initFx() {
   video.addEventListener('error', () => { hasVideo = false; });
   new IntersectionObserver(es => {
     visible = es[0].isIntersecting;
-    if (hasVideo) { visible ? video.play().catch(() => {}) : video.pause(); }
+    if (visible) {
+      /* ролик весит ~1.5 МБ — качаем его только когда секция реально дошла до экрана */
+      if (!hasVideo && video.preload !== 'auto') { video.preload = 'auto'; video.load(); }
+      else if (hasVideo) video.play().catch(() => {});
+    } else if (hasVideo) {
+      video.pause();
+    }
     if (visible && !running) { running = true; requestAnimationFrame(draw); }
   }, { threshold: 0.05 }).observe($('#reel'));
 }

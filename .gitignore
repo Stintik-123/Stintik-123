@@ -1,6 +1,7 @@
 node_modules/
 .shots/
 .shots-mobile/
+reel/
 .shots-personal/
 *.log
 .DS_Store
