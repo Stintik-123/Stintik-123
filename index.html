@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Stintik — делаю инструменты для людей</title>
-<meta name="description" content="Соло-разработчик из Ульяновска. Бесплатные инструменты с открытым кодом: без рекламы, аккаунтов и рассылок.">
+<meta name="description" content="Соло-разработчик из Ульяновска. Бесплатные VPN, каталоги, русификаторы и утилиты с открытым кодом — без рекламы, аккаунтов и рассылок.">
 <meta property="og:title" content="Stintik — делаю инструменты для людей">
-<meta property="og:description" content="Бесплатные инструменты с открытым кодом. Без рекламы и регистрации.">
+<meta property="og:description" content="Бесплатные инструменты с открытым кодом: VPN, каталоги, озвучки игр. Без рекламы и регистрации.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://stintik-123.github.io/Stintik-123/">
 <meta property="og:image" content="https://stintik-123.github.io/Stintik-123/assets/og.png">
@@ -28,9 +28,10 @@
 <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
 
-<link rel="stylesheet" href="css/styles.css?v=2">
+<link rel="stylesheet" href="css/styles.css?v=3">
+<link rel="stylesheet" href="css/polish.css?v=1">
 </head>
-<body class="has-cursor">
+<body>
 
 <canvas id="mesh" aria-hidden="true"></canvas>
 <canvas id="gl" aria-hidden="true"></canvas>
@@ -172,23 +173,23 @@
     </div>
   </section>
 
-  <!-- REEL: положите ролик в assets/video/reel.mp4 — он подхватится автоматически -->
-  <section class="reel" id="reel">
+  <!-- MANIFESTO / REEL -->
+  <section class="reel" id="reel" aria-label="Манифест">
     <div class="reel-pin" id="reelPin">
-      <div class="reel-title" aria-hidden="true">Showreel</div>
+      <div class="reel-title" aria-hidden="true">Манифест</div>
       <div class="reel-frame" id="reelFrame">
         <div class="reel-media" id="reelMedia">
-          <canvas id="fx"></canvas>
-          <video id="reelVideo" muted loop playsinline preload="metadata" poster="assets/projects/megathread.jpg">
-            <!-- TODO: положить ролик в assets/video/reel.mp4 и раскомментировать источник
+          <canvas id="fx" aria-hidden="true"></canvas>
+          <video id="reelVideo" muted loop playsinline preload="none" poster="assets/projects/megathread.jpg">
+            <!-- Когда будет ролик: раскомментируй source
             <source id="reelSrc" src="assets/video/reel.mp4" type="video/mp4">
             -->
           </video>
         </div>
         <div class="reel-shade"></div>
         <div class="reel-ui" id="reelUi">
-          <h2>Пять инструментов. <em>Ноль условий.</em></h2>
-          <span class="mono">Реел · 2026</span>
+          <h2>Пять инструментов.<br><em>Ноль условий.</em></h2>
+          <span class="mono">Открытый код · 2026</span>
         </div>
       </div>
     </div>
@@ -226,7 +227,6 @@
       </div>
     </div>
 
-    <!-- Bento-набор принципов (паттерн Scrolltide «Service Bento») -->
     <ul class="principles bento">
       <li><span>Никакой рекламы и трекеров</span></li>
       <li><span>Код открыт — форкай и переделывай</span></li>
@@ -336,6 +336,6 @@
 
 <div class="toast" id="toast">Почта скопирована</div>
 
-<script type="module" src="js/main.js?v=2"></script>
+<script type="module" src="js/main.js?v=3"></script>
 </body>
 </html>
