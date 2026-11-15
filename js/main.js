@@ -60,12 +60,12 @@ let lenisRef = null;
   });
 
   const toast = $('#toast'); let tt;
-  $('#mail').addEventListener('click', function () {
+  $$('[data-mail]').forEach(btn => btn.addEventListener('click', function () {
     const v = this.dataset.mail;
     const done = () => { toast.classList.add('on'); clearTimeout(tt); tt = setTimeout(() => toast.classList.remove('on'), 1800); };
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(v).then(done, () => { location.href = 'mailto:' + v; });
     else location.href = 'mailto:' + v;
-  });
+  }));
 
   const photo = $('#photo img');
   if (photo && photo.complete && photo.naturalWidth) photo.parentNode.classList.add('ok');
@@ -349,23 +349,29 @@ function main() {
   /* --- пресеты 3D-объекта и фона по секциям (bg — прозрачность mesh-фона) --- */
   const base = {
     hero: { x: 0, y: 0.02, s: 1, amp: 0.32, o: 1, bg: 0.55 },
+    identity: { x: 0.74, y: 0.3, s: 0.42, amp: 0.34, o: 0.5, bg: 0.32 },
     work: { x: 0.84, y: 0.56, s: 0.28, amp: 0.22, o: 1, bg: 0.20 },
     reel: { x: 0, y: 0, s: 0.0001, amp: 0.2, o: 1, bg: 0.08 },
     about: { x: 0.74, y: 0.02, s: 0.6, amp: 0.5, o: 0.38, bg: 0.18 },
     hardware: { x: 0.74, y: 0.12, s: 0.42, amp: 0.42, o: 0.4, bg: 0.14 },
     media: { x: 1.12, y: 0.05, s: 0.3, amp: 0.46, o: 0.3, bg: 0.14 },
     stack: { x: 0.74, y: -0.1, s: 0.5, amp: 0.38, o: 0.45, bg: 0.16 },
+    path: { x: 0.82, y: -0.28, s: 0.34, amp: 0.36, o: 0.38, bg: 0.18 },
+    faq: { x: 0.18, y: 0.52, s: 0.3, amp: 0.4, o: 0.3, bg: 0.16 },
     contact: { x: 0, y: 0.12, s: 1.2, amp: 0.55, o: 1, bg: 0.45 }
   };
   /* на телефоне текст занимает всю ширину — блоб уводим в свободные углы и приглушаем */
   const mobBase = {
     hero:     { x: 0,    y: 0.46, s: 0.42, o: 1,    bg: 0.50 },
+    identity: { x: 0.22, y: -0.62, s: 0.28, o: 0.22, bg: 0.16 },
     work:     { x: 0.72, y: -0.72, s: 0.18, o: 0.9,  bg: 0.16 },
     reel:     { x: 0,    y: 0,    s: 0.0001, o: 1,  bg: 0.07 },
     about:    { x: 0.22, y: -0.66, s: 0.30, o: 0.26, bg: 0.16 },
     hardware: { x: 0.34, y: -0.70, s: 0.28, o: 0.22, bg: 0.12 },
     media:    { x: 0.62, y: -0.70, s: 0.26, o: 0.22, bg: 0.12 },
     stack:    { x: 0.34, y: -0.70, s: 0.30, o: 0.26, bg: 0.14 },
+    path:     { x: 0.30, y: -0.66, s: 0.26, o: 0.20, bg: 0.12 },
+    faq:      { x: 0.20, y: -0.62, s: 0.26, o: 0.20, bg: 0.12 },
     contact:  { x: 0.10, y: 0.92, s: 0.27, o: 0.5,  bg: 0.34 }
   };
   const P = id => {
@@ -505,10 +511,20 @@ function main() {
   });
 
   gsap.from('.rows li', { y: 40, opacity: 0, duration: 1, stagger: 0.09, ease: 'power3.out', scrollTrigger: { trigger: '.rows', start: 'top 82%' } });
+
+  /* кто я: карточки ников */
+  gsap.from('.id-card', { y: 44, opacity: 0, duration: 1, stagger: 0.07, ease: 'power3.out', scrollTrigger: { trigger: '.id-grid', start: 'top 84%' } });
+  gsap.from('.id-title, .id-lead', { y: 30, opacity: 0, duration: 1, stagger: 0.1, ease: 'power3.out', scrollTrigger: { trigger: '#identity', start: 'top 78%' } });
+
+  /* путь */
+  gsap.from('.path-list li', { y: 36, opacity: 0, duration: 1, stagger: 0.08, ease: 'power3.out', scrollTrigger: { trigger: '.path-list', start: 'top 84%' } });
+
+  /* вопросы */
+  gsap.from('.faq-list > div', { y: 36, opacity: 0, duration: 1, stagger: 0.06, ease: 'power3.out', scrollTrigger: { trigger: '.faq-list', start: 'top 86%' } });
   gsap.from('.contact h2, .mail, .links a', { y: 60, opacity: 0, duration: 1.2, stagger: 0.08, ease: 'power3.out', scrollTrigger: { trigger: '.contact', start: 'top 65%' } });
 
   /* смена состояния 3D-объекта по секциям (создаём последними) */
-  ['hero', 'work', 'reel', 'about', 'hardware', 'media', 'stack', 'contact'].forEach(id => {
+  ['hero', 'identity', 'work', 'reel', 'about', 'hardware', 'media', 'stack', 'path', 'faq', 'contact'].forEach(id => {
     ScrollTrigger.create({ trigger: '#' + id, start: 'top 60%', end: 'bottom 60%', onToggle: self => { if (self.isActive) goto(id); } });
   });
 

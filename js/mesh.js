@@ -17,7 +17,14 @@ const FRAG = `
 precision mediump float;
 uniform vec2 uRes;
 uniform float uTime;
+uniform float uHue;
 varying vec2 vUv;
+
+vec3 hueShift(vec3 c, float a) {
+  const vec3 k = vec3(0.57735027);
+  float cosA = cos(a);
+  return c * cosA + cross(k, c) * sin(a) + k * dot(k, c) * (1.0 - cosA);
+}
 
 float hash(vec2 p) {
   return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
@@ -64,6 +71,7 @@ void main() {
   // мягкая виньетка, чтобы края не спорили с текстом
   float vig = smoothstep(1.30, 0.30, length((uv - 0.5) * vec2(1.05, 1.0)));
   col *= mix(0.30, 0.85, vig);
+  col = mix(col, hueShift(col, uHue), 0.7);
 
   gl_FragColor = vec4(col, 1.0);
 }`;
@@ -82,9 +90,10 @@ function compile(gl, type, src) {
 
 /**
  * @param {string} id  id канваса
+ * @param {{hue?:number, opacity?:number}} opts  сдвиг оттенка палитры (рад) и стартовая прозрачность
  * @returns {{set:Function, scale:Function, destroy:Function}|null}
  */
-export function initMesh(id = 'mesh') {
+export function initMesh(id = 'mesh', opts = {}) {
   const canvas = document.getElementById(id);
   if (!canvas) return null;
 
@@ -120,6 +129,9 @@ export function initMesh(id = 'mesh') {
 
   const uRes = gl.getUniformLocation(prog, 'uRes');
   const uTime = gl.getUniformLocation(prog, 'uTime');
+  const uHue = gl.getUniformLocation(prog, 'uHue');
+  const hue = Number(opts.hue) || 0;
+  if (uHue) gl.uniform1f(uHue, hue);
 
   // телефон — считаем вчетверо меньше пикселей, фон это прощает
   let q = coarse || cores <= 4 ? 0.42 : 0.7;
@@ -142,6 +154,8 @@ export function initMesh(id = 'mesh') {
   addEventListener('resize', resize, { passive: true });
 
   document.addEventListener('visibilitychange', () => { visible = !document.hidden; });
+
+  if (opts.opacity != null) canvas.style.opacity = String(opts.opacity);
 
   const t0 = performance.now();
   let frame = 0;

@@ -5,3 +5,4 @@ reel/
 .shots-personal/
 *.log
 .DS_Store
+.shots-projects/

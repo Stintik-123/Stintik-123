@@ -53,22 +53,30 @@
   <a href="#hero" class="logo">Stintik<sup>®</sup></a>
   <div class="mono"><span id="clock">--:--</span> · Ульяновск</div>
   <nav class="nav-links">
+    <a href="#identity">Кто я</a>
     <a href="#work">Работы</a>
+    <a href="projects/">Проекты</a>
     <a href="#about">Обо мне</a>
     <a href="#hardware">Железо</a>
     <a href="#media">Игры и кино</a>
     <a href="#stack">Стек</a>
+    <a href="#faq">Вопросы</a>
     <a href="#contact">Связь</a>
   </nav>
+  <button class="cmdk-btn" id="cmdk-open" aria-label="Поиск по сайту"><span>Поиск</span>⌕<kbd>⌘K</kbd></button>
   <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false">Меню</button>
 </header>
 <div class="menu" id="menu">
-  <a href="#work"><span>01</span>Работы</a>
-  <a href="#about"><span>02</span>Обо мне</a>
-  <a href="#hardware"><span>03</span>Железо</a>
-  <a href="#media"><span>04</span>Игры и кино</a>
-  <a href="#stack"><span>05</span>Стек</a>
-  <a href="#contact"><span>06</span>Связь</a>
+  <a href="#identity"><span>01</span>Кто я</a>
+  <a href="#work"><span>02</span>Работы</a>
+  <a href="projects/"><span>03</span>Проекты</a>
+  <a href="#about"><span>04</span>Обо мне</a>
+  <a href="#hardware"><span>05</span>Железо</a>
+  <a href="#media"><span>06</span>Игры и кино</a>
+  <a href="#stack"><span>07</span>Стек</a>
+  <a href="#path"><span>08</span>Путь</a>
+  <a href="#faq"><span>09</span>Вопросы</a>
+  <a href="#contact"><span>10</span>Связь</a>
 </div>
 
 <main>
@@ -76,7 +84,7 @@
   <section class="hero" id="hero">
     <div class="hero-top hero-fade">
       <span class="mono">Портфолио</span>
-      <span class="mono">(2016 — 2026)</span>
+      <span class="mono">(2020 — 2026)</span>
     </div>
     <h1 class="hero-title" id="heroTitle" aria-label="Делаю инструменты для людей">
       <span class="ln"><span>Делаю</span></span>
@@ -103,6 +111,88 @@
     </div></div>
   </div>
 
+
+  <!-- КТО Я: все ники в одном месте -->
+  <section class="identity" id="identity">
+    <div class="label mono"><span>(01)</span><span>Кто я и где я ещё</span></div>
+    <h2 class="id-title">Один человек.<br><em>Много ников.</em></h2>
+    <p class="id-lead">Меня знают по-разному: в Reddit я модератор и автор новостей, в Steam&nbsp;— <span class="mono">stint</span>, в Telegram&nbsp;— <span class="mono">@Keb04w</span>, на GitHub&nbsp;— <span class="mono">Stintik-123</span>. Это всё один и тот же человек из Ульяновска. Ниже&nbsp;— полная карта, чтобы не пришлось гадать.</p>
+
+    <div class="id-grid">
+      <div class="id-card id-card-wide">
+        <a class="id-cover" href="https://www.reddit.com/user/Stintik_Official/" target="_blank" rel="noopener" aria-label="Reddit — профиль"></a>
+        <span class="id-net">Reddit</span>
+        <span class="id-handle">u/Stintik_Official</span>
+        <span class="id-what">Модератор <a href="https://www.reddit.com/r/ruAsska/" target="_blank" rel="noopener" class="id-inline">r/ruAsska</a> — одного из трёх крупнейших русскоязычных сабов, 80 000 участников. Основатель <a href="https://www.reddit.com/r/Ru_Piracy/" target="_blank" rel="noopener" class="id-inline">r/Ru_Piracy</a>. Посты есть и в r/ru_gamer.</span>
+        <span class="id-go">профиль ↗</span>
+      </div>
+
+      <div class="id-card">
+        <a class="id-cover" href="https://discord.gg/NXWpAESn" target="_blank" rel="noopener" aria-label="Discord — личный"></a>
+        <span class="id-net">Discord</span>
+        <span class="id-handle">личный аккаунт</span>
+        <span class="id-what">Мой Discord: списываемся по проектам, идеям и просто так.</span>
+        <span class="id-go">в Discord ↗</span>
+      </div>
+
+      <div class="id-card">
+        <a class="id-cover" href="https://t.me/Keb04w" target="_blank" rel="noopener" aria-label="Telegram — написать"></a>
+        <span class="id-net">Telegram</span>
+        <span class="id-handle">@Keb04w</span>
+        <span class="id-what">Самый быстрый способ до меня добраться. Отвечаю почти всегда.</span>
+        <span class="id-go">написать ↗</span>
+      </div>
+
+      <div class="id-card">
+        <a class="id-cover" href="https://t.me/StintikVPN" target="_blank" rel="noopener" aria-label="Telegram-канал — новости"></a>
+        <span class="id-net">Telegram-канал</span>
+        <span class="id-handle">@StintikVPN</span>
+        <span class="id-what">Новости и обновления проектов: что починил, что добавил, что сломалось.</span>
+        <span class="id-go">читать ↗</span>
+      </div>
+
+      <div class="id-card">
+        <a class="id-cover" href="https://github.com/Stintik-123" target="_blank" rel="noopener" aria-label="GitHub — профиль"></a>
+        <span class="id-net">GitHub</span>
+        <span class="id-handle">Stintik-123</span>
+        <span class="id-what">12 открытых репозиториев, зеркала на GitLab. Весь код — в открытом доступе.</span>
+        <span class="id-go">профиль ↗</span>
+      </div>
+
+      <div class="id-card">
+        <a class="id-cover" href="https://gitlab.com/Stintik-123" target="_blank" rel="noopener" aria-label="GitLab — профиль"></a>
+        <span class="id-net">GitLab</span>
+        <span class="id-handle">Stintik-123</span>
+        <span class="id-what">Зеркала проектов — на случай, если с GitHub что-то не так.</span>
+        <span class="id-go">профиль ↗</span>
+      </div>
+
+      <div class="id-card">
+        <a class="id-cover" href="https://steamcommunity.com/profiles/76561199759712679/" target="_blank" rel="noopener" aria-label="Steam — профиль"></a>
+        <span class="id-net">Steam</span>
+        <span class="id-handle">Stintik</span>
+        <span class="id-what">Игры, инвентарь, инвентарь и библиотека. Раньше этот же профиль был <span class="mono">konqifan</span>.</span>
+        <span class="id-go">профиль ↗</span>
+      </div>
+
+      <div class="id-card">
+        <a class="id-cover" href="https://x.com/Keb04w" target="_blank" rel="noopener" aria-label="X — профиль"></a>
+        <span class="id-net">X</span>
+        <span class="id-handle">@Keb04w</span>
+        <span class="id-what">Здесь я в основном сижу и читаю. Иногда пишу.</span>
+        <span class="id-go">профиль ↗</span>
+      </div>
+
+      <div class="id-card is-old">
+        <a class="id-cover" href="#contact" aria-label="Написать мне"></a>
+        <span class="id-net">Как меня могли видеть</span>
+        <span class="id-handle">Stintik-123 · Stintik_Official · Ок · Keb04w</span>
+        <span class="id-what">Один человек и куча ников. Если увидел любое из этих имён — это я, и ниже есть всё, чем я занимаюсь.</span>
+        <span class="id-go">написать мне ↗</span>
+      </div>
+    </div>
+  </section>
+
   <!-- WORK -->
   <section class="work" id="work">
     <div class="work-pin">
@@ -110,7 +200,7 @@
         <div class="panel">
           <h2>Избран&shy;ные <em>работы</em></h2>
           <p>Пять проектов, которые работают прямо сейчас. Без регистрации, без условий.</p>
-          <div class="mono"><span>05 проектов</span><span>→</span></div>
+          <div class="mono"><span>05 проектов</span><a href="projects/">все страницы →</a></div>
         </div>
 
         <article class="card" data-cursor="Открыть">
@@ -119,7 +209,7 @@
           <div class="card-info">
             <h3>StintikVPN <span class="mono">01</span></h3>
             <p>Бесплатные VPN-подписки, Telegram-прокси и гайды. Скопировал — вставил в клиент — работает.</p>
-            <div class="card-meta"><span class="mono">★ 166</span><a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener" data-cursor="">Код ↗</a></div>
+            <div class="card-meta"><span class="mono">★ 166</span><a href="https://github.com/Stintik-123/StintikVPN" target="_blank" rel="noopener" data-cursor="">Код ↗</a> <a href="projects/stintikvpn.html">Страница ↗</a></div>
             <div class="tags"><i>MTProto</i><i>WARP</i><i>Зеркала</i></div>
           </div>
         </article>
@@ -130,7 +220,7 @@
           <div class="card-info">
             <h3>MegaThread <span class="mono">02</span></h3>
             <p>Каталог ресурсов и трекеров: кино, аниме, игры, книги. Работает офлайн как PWA.</p>
-            <div class="card-meta"><span class="mono">1386 ссылок</span><a href="https://github.com/Stintik-123/MegaThread" target="_blank" rel="noopener">Код ↗</a></div>
+            <div class="card-meta"><span class="mono">1386 ссылок</span><a href="https://github.com/Stintik-123/MegaThread" target="_blank" rel="noopener">Код ↗</a> <a href="projects/megathread.html">Страница ↗</a></div>
             <div class="tags"><i>9 разделов</i><i>43 метки</i><i>PWA</i></div>
           </div>
         </article>
@@ -141,7 +231,7 @@
           <div class="card-info">
             <h3>GameVoice <span class="mono">03</span></h3>
             <p>Русификаторы и озвучки игр. Кто делал, что переведено, статус работы и прямые ссылки — всё в одной карточке.</p>
-            <div class="card-meta"><span class="mono">102 игры</span><a href="https://github.com/Stintik-123/GameVoice" target="_blank" rel="noopener">Код ↗</a></div>
+            <div class="card-meta"><span class="mono">102 игры</span><a href="https://github.com/Stintik-123/GameVoice" target="_blank" rel="noopener">Код ↗</a> <a href="projects/gamevoice.html">Страница ↗</a></div>
             <div class="tags"><i>461 ссылка</i><i>Трейлеры</i><i>22 жанра</i></div>
           </div>
         </article>
@@ -152,7 +242,7 @@
           <div class="card-info">
             <h3>SteamDeal <span class="mono">04</span></h3>
             <p>Витрина скидок Steam с ценами в регионах RU, KZ, UA и US. Фильтры по проценту, цене и наличию.</p>
-            <div class="card-meta"><span class="mono">4 региона</span><a href="https://github.com/Stintik-123/SteamDeal" target="_blank" rel="noopener">Код ↗</a></div>
+            <div class="card-meta"><span class="mono">4 региона</span><a href="https://github.com/Stintik-123/SteamDeal" target="_blank" rel="noopener">Код ↗</a> <a href="projects/steamdeal.html">Страница ↗</a></div>
             <div class="tags"><i>Цены по регионам</i><i>Фильтры</i></div>
           </div>
         </article>
@@ -163,7 +253,7 @@
           <div class="card-info">
             <h3>Overdrive <span class="mono">05</span></h3>
             <p>Магазин homebrew для PS5. Нативное приложение на C++ с поддержкой сети и обновлений.</p>
-            <div class="card-meta"><span class="mono">★ 10</span><a href="https://github.com/Stintik-123/Overdrive" target="_blank" rel="noopener">Код ↗</a></div>
+            <div class="card-meta"><span class="mono">★ 10</span><a href="https://github.com/Stintik-123/Overdrive" target="_blank" rel="noopener">Код ↗</a> <a href="projects/overdrive.html">Страница ↗</a></div>
             <div class="tags"><i>C++</i><i>PS5</i><i>1800+ игр</i></div>
           </div>
         </article>
@@ -196,7 +286,7 @@
 
   <!-- ABOUT -->
   <section class="about" id="about">
-    <div class="label mono"><span>(01)</span><span>Обо мне</span></div>
+    <div class="label mono"><span>(02)</span><span>Обо мне</span></div>
     <div class="statement" id="statement">
       <p>Я начинал с модов и каналов по Minecraft, и оттуда осталась привычка: если что-то нужно людям — надо просто сделать и выложить.</p>
     </div>
@@ -210,8 +300,8 @@
 
       <div class="about-text">
         <p>Меня зовут <b>Стинт</b>. Я соло-разработчик и делаю бесплатные инструменты для доступа к информации: VPN-подписки, каталоги, озвучки игр, десктопные утилиты.</p>
-        <p>В интернете с 2016 года: сначала моды и каналы по Minecraft, потом каталоги, боты и нативные приложения. Сейчас у меня <b>12 открытых репозиториев</b>, зеркала на GitLab и работа в r/Ru_Piracy — правлю правила и помогаю людям инструментами.</p>
-        <p>Мне девятый класс, я готовлюсь к ОГЭ — поэтому проекты живут <b>по вечерам и в выходные</b>. Обществознание даётся легко: понимаю, как устроены политические системы и строй. Профессию я не выбрал и не тороплюсь — это не тяготит.</p>
+        <p>В интернете с 2020 года: сначала моды и каналы по Minecraft, потом каталоги, боты и нативные приложения. Сейчас у меня <b>12 открытых репозиториев</b>, зеркала на GitLab и работа в r/Ru_Piracy — правлю правила и помогаю людям инструментами.</p>
+        <p>Проекты живут <b>по вечерам и в выходные</b> — это единственное время, которое я могу удерживать в руках что-то большое. Профессию я не выбрал и не тороплюсь: код для меня — хобби, а не работа, и от этого он делается честнее.</p>
         <p>Кодинг для меня <b>хобби, а не работа</b>. Мне интересен не процесс, как пишется код, а готовый продукт: собрал, показал людям, дальше он живёт сам.</p>
         <p>Раньше это были каналы по Minecraft — 200 подписчиков на канале модов и 451 на канале с видео; в 10–12 лет на них зарабатывал. Сейчас каналы заброшены, но остался рефлекс: <b>если что-то нужно людям — сделать и выложить.</b></p>
         <p>Код в основном печатает ИИ — я решаю, <b>что делать, зачем и как это должно работать.</b> Отсюда скорость: недели разработки превращаются в дни. Но продукт, смысл и ответственность всё равно мои.</p>
@@ -239,7 +329,7 @@
 
   <!-- HARDWARE -->
   <section class="hardware" id="hardware">
-    <div class="label mono"><span>(02)</span><span>Железо</span></div>
+    <div class="label mono"><span>(03)</span><span>Железо</span></div>
     <div class="spec-grid">
       <div>
         <span class="mono">Процессор</span>
@@ -277,7 +367,7 @@
 
   <!-- MEDIA -->
   <section class="media" id="media">
-    <div class="label mono"><span>(03)</span><span>Игры и кино</span></div>
+    <div class="label mono"><span>(04)</span><span>Игры и кино</span></div>
     <div class="media-cols">
       <div>
         <h3>Любимые <em>игры</em></h3>
@@ -306,7 +396,7 @@
 
   <!-- STACK -->
   <section class="stack" id="stack">
-    <div class="label mono"><span>(04)</span><span>Стек</span></div>
+    <div class="label mono"><span>(05)</span><span>Стек</span></div>
     <ul class="rows">
       <li><span class="mono">01</span><b>Web</b><span>JavaScript · TypeScript · HTML · CSS — без сборщиков, статика на GitHub Pages</span></li>
       <li><span class="mono">02</span><b>Data</b><span>Python · PySide — сбор и проверка данных</span></li>
@@ -316,16 +406,89 @@
     </ul>
   </section>
 
+
+  <!-- ПУТЬ: как я к этому пришёл -->
+  <section class="path" id="path">
+    <div class="label mono"><span>(06)</span><span>Путь</span></div>
+    <h2 class="path-title">Как я сюда <em>дошёл</em></h2>
+    <ol class="path-list">
+      <li>
+        <b class="mono">Старт</b>
+        <span>Моды и каналы по Minecraft. Ник <i>SkyOFF</i> — его до сих пор помнят. Тогда же понял: если людям что-то нужно, надо просто сделать и выложить.</span>
+      </li>
+      <li>
+        <b class="mono">Каталоги</b>
+        <span>Каталоги, боты и трекеры на Python. Первые инструменты «чтобы было под рукой». <i>konqifan</i> в Steam, ранние форки.</span>
+      </li>
+      <li>
+        <b class="mono">Инструменты</b>
+        <span>StintikVPN, MegaThread, GameVoice, SteamDeal — то, что работает до сих пор. Каталоги, озвучки игр, витрина скидок, VPN-подписки.</span>
+      </li>
+      <li>
+        <b class="mono">Reddit</b>
+        <span>Reddit: модератор <a href="https://www.reddit.com/r/ruAsska/" target="_blank" rel="noopener" class="id-inline">r/ruAsska</a> (80 000 участников), новостной бот, свой <a href="https://www.reddit.com/r/Ru_Piracy/" target="_blank" rel="noopener" class="id-inline">r/Ru_Piracy</a> и Discord.</span>
+      </li>
+      <li>
+        <b class="mono">Сейчас</b>
+        <span>Overdrive — homebrew-магазин для PS5 на C++. 12 открытых репозиториев, зеркала, работа в r/Ru_Piracy. Проекты живут по вечерам и в выходные.</span>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ВОПРОСЫ -->
+  <section class="faq" id="faq">
+    <div class="label mono"><span>(07)</span><span>Вопросы</span></div>
+    <h2 class="faq-title">Вопросы, которые <em>задают чаще всего</em></h2>
+    <dl class="faq-list">
+      <div>
+        <dt>Кто ты вообще такой?</dt>
+        <dd>Соло-разработчик из Ульяновска. Зовут Стинт, но видели меня и как <span class="mono">Stintik-123</span>, и как <span class="mono">Stintik_Official</span>, и как <span class="mono">Ок</span>, и как <span class="mono">Keb04w</span>. Делаю бесплатные инструменты с открытым кодом — без рекламы, аккаунтов и рассылок. <a href="#identity">Полная карта всех ников&nbsp;— выше</a>.</dd>
+      </div>
+      <div>
+        <dt>Ты сам пишешь код?</dt>
+        <dd>Нет. Код в основном печатает ИИ — я решаю, <b>что делать, зачем и как это должно работать</b>. Отсюда скорость: недели разработки превращаются в дни. Но продукт, смысл и ответственность всё равно мои.</dd>
+      </div>
+      <div>
+        <dt>Что конкретно ты делаешь?</dt>
+        <dd>Пять живых проектов: <a href="https://stintik-123.github.io/StintikVPN/">StintikVPN</a> — VPN-подписки и прокси, <a href="https://stintik-123.github.io/MegaThread/">MegaThread</a> — каталог ресурсов, <a href="https://stintik-123.github.io/GameVoice/">GameVoice</a> — озвучки игр, <a href="https://stintik-123.github.io/SteamDeal/">SteamDeal</a> — скидки Steam, <a href="https://github.com/Stintik-123/Overdrive">Overdrive</a> — homebrew для PS5.</dd>
+      </div>
+      <div>
+        <dt>Почему всё бесплатно?</dt>
+        <dd>Потому что доступ к информации не должен зависеть от кошелька. Рекламы и трекеров нет вообще, регистрации нет, подписок нет. Код открыт — форкай и переделывай.</dd>
+      </div>
+      <div>
+        <dt>Где тебя найти в интернете?</dt>
+        <dd>Везде, где я есть, — это я: <a href="https://github.com/Stintik-123">GitHub</a>, <a href="https://www.reddit.com/user/Stintik_Official/">Reddit</a>, <a href="https://discord.gg/NXWpAESn">Discord</a>, <a href="https://t.me/Keb04w">Telegram</a>, <a href="https://t.me/StintikVPN">Telegram-канал</a>, <a href="https://steamcommunity.com/profiles/76561199759712679/">Steam</a>, <a href="https://x.com/Keb04w">X</a>, <a href="https://gitlab.com/Stintik-123">GitLab</a>. Полный список и история ников — в разделе <a href="#identity">«Кто я»</a>.</dd>
+      </div>
+      <div>
+        <dt>Как связаться?</dt>
+        <dd>Telegram <a href="https://t.me/Keb04w">@Keb04w</a> — быстрее всего, отвечаю почти всегда. Почта — для длинных писем и предложений: <button class="faq-mail" data-mail="stintikvpn@proton.me">stintikvpn@proton.me</button>.</dd>
+      </div>
+      <div>
+        <dt>Можно ли чем-то помочь?</dt>
+        <dd>Да. Форкнуть и дописать, прислать баг, подсказать идею, нарисовать обложку для проекта, записать обзор. Пиши в Telegram — разберусь.</dd>
+      </div>
+      <div>
+        <dt>Что будет дальше?</dt>
+        <dd>Допиливаю Overdrive, веду каталоги в актуальном состоянии и расширяю набор инструментов. Проекты живут по вечерам и в выходные — зато делаются честно и до конца.</dd>
+      </div>
+    </dl>
+  </section>
+
   <!-- CONTACT -->
   <section class="contact" id="contact">
-    <div class="label mono"><span>(05)</span><span>Связь</span></div>
+    <div class="label mono"><span>(08)</span><span>Связь</span></div>
     <h2>Давайте<br><em>сделаем</em><br>что-нибудь</h2>
     <button class="mail" id="mail" data-mail="stintikvpn@proton.me" data-cursor="Копировать">stintikvpn@proton.me</button>
     <div class="links">
       <a href="https://t.me/Keb04w" target="_blank" rel="noopener"><span>Telegram</span><small>@Keb04w · быстрее всего</small></a>
+      <a href="https://t.me/StintikVPN" target="_blank" rel="noopener"><span>Канал</span><small>@StintikVPN · новости проектов</small></a>
+      <a href="https://discord.gg/NXWpAESn" target="_blank" rel="noopener"><span>Discord</span><small>личный аккаунт</small></a>
+      <a href="https://www.reddit.com/user/Stintik_Official/" target="_blank" rel="noopener"><span>Reddit</span><small>u/Stintik_Official · модератор r/ruAsska</small></a>
       <a href="https://github.com/Stintik-123" target="_blank" rel="noopener"><span>GitHub</span><small>Stintik-123 · 12 репозиториев</small></a>
       <a href="https://gitlab.com/Stintik-123" target="_blank" rel="noopener"><span>GitLab</span><small>зеркала проектов</small></a>
-      <a href="https://www.reddit.com/user/Stintik_Official/" target="_blank" rel="noopener"><span>Reddit</span><small>u/Stintik_Official</small></a>
+      <a href="https://steamcommunity.com/profiles/76561199759712679/" target="_blank" rel="noopener"><span>Steam</span><small>Stintik · раньше konqifan</small></a>
+      <a href="https://x.com/Keb04w" target="_blank" rel="noopener"><span>X</span><small>@Keb04w</small></a>
     </div>
     <footer>
       <span class="mono">© 2026 Stintik · Ульяновск</span>
@@ -334,8 +497,18 @@
   </section>
 </main>
 
+<div class="cmdk" id="cmdk" role="dialog" aria-modal="true" aria-label="Поиск по сайту">
+  <div class="cmdk-backdrop"></div>
+  <div class="cmdk-panel">
+    <input class="cmdk-input" id="cmdk-input" type="text" placeholder="Раздел, ник или проект — например «vpn», «reddit», «telegram»" autocomplete="off" spellcheck="false" aria-label="Поиск">
+    <div class="cmdk-list" id="cmdk-list"></div>
+    <div class="cmdk-foot"><span>↑ ↓ выбрать</span><span>↵ открыть</span><span>esc закрыть</span></div>
+  </div>
+</div>
+
 <div class="toast" id="toast">Почта скопирована</div>
 
 <script type="module" src="js/main.js?v=2"></script>
+<script type="module" src="js/palette.js?v=1"></script>
 </body>
 </html>

@@ -1,41 +1,55 @@
-/* Скриншоты проектов для витрины: node scripts/shot-projects.mjs
-   Кладёт превью в assets/projects/ в JPEG (вес в ~5 раз меньше PNG). */
-import { chromium } from 'playwright';
-import fs from 'node:fs';
+/* Скриншоты страниц проектов: node scripts/shot-projects.mjs */
 import path from 'node:path';
+import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import { launch, serve } from './browser.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const OUT = path.join(ROOT, 'assets', 'projects');
+const OUT = path.join(ROOT, '.shots-projects');
 fs.mkdirSync(OUT, { recursive: true });
+const { server, base } = await serve(ROOT);
+const browser = await launch();
 
-const PROJECTS = [
-  { id: 'stintikvpn', url: 'https://stintik-123.github.io/StintikVPN/', name: 'StintikVPN' },
-  { id: 'megathread', url: 'https://stintik-123.github.io/MegaThread/', name: 'MegaThread' },
-  { id: 'gamevoice', url: 'https://stintik-123.github.io/GameVoice/', name: 'GameVoice' },
-  { id: 'steamdeal', url: 'https://stintik-123.github.io/SteamDeal/', name: 'SteamDeal' },
-  { id: 'overdrive', url: 'https://github.com/Stintik-123/Overdrive', name: 'Overdrive' },
+const views = [
+  { name: 'desktop', width: 1440, height: 950, mobile: false },
+  { name: 'mobile', width: 390, height: 844, mobile: true },
+];
+const pages = [
+  ['/projects/index.html', 'list'],
+  ['/projects/stintikvpn.html', 'vpn'],
+  ['/projects/megathread.html', 'mega'],
+  ['/projects/overdrive.html', 'over'],
 ];
 
-const browser = await chromium.launch();
-
-for (const p of PROJECTS) {
-  const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
-  try {
-    await page.goto(p.url, { waitUntil: 'networkidle', timeout: 60000 });
-    await page.waitForTimeout(3000);
-    await page.screenshot({
-      path: path.join(OUT, `${p.id}.jpg`),
-      type: 'jpeg',
-      quality: 76,
-      clip: { x: 0, y: 0, width: 1280, height: 720 },
+for (const v of views) {
+  for (const [url, name] of pages) {
+    const page = await browser.newPage({
+      viewport: { width: v.width, height: v.height },
+      isMobile: v.mobile, hasTouch: v.mobile, deviceScaleFactor: 1.5,
     });
-    const kb = Math.round(fs.statSync(path.join(OUT, `${p.id}.jpg`)).size / 1024);
-    console.log('ok', p.id, kb + ' КБ');
-  } catch (e) {
-    console.log('fail', p.id, e.message.slice(0, 80));
+    const errs = [];
+    page.on('pageerror', (e) => errs.push(String(e)));
+    page.on('console', (m) => { if (m.type() === 'error') errs.push(m.text()); });
+    await page.goto(base + url, { waitUntil: 'load' });
+    await page.waitForTimeout(3500);
+    await page.screenshot({ path: path.join(OUT, `${v.name}-${name}-top.png`), timeout: 60000 });
+    // прокрутка к превью
+    await page.evaluate(() => {
+      const f = document.querySelector('.pframe');
+      if (f) window.scrollTo({ top: f.getBoundingClientRect().top + window.scrollY - 40, behavior: 'instant' });
+    });
+    await page.waitForTimeout(4000);
+    await page.screenshot({ path: path.join(OUT, `${v.name}-${name}-preview.png`), timeout: 60000 });
+    const audit = await page.evaluate(() => ({
+      overflowX: document.documentElement.scrollWidth > window.innerWidth + 1,
+      mesh: getComputedStyle(document.getElementById('mesh')).opacity,
+      hue: document.body.dataset.hue || '-',
+      iframe: document.querySelector('.pframe iframe')?.getAttribute('src') || 'нет',
+    }));
+    console.log(v.name, name, JSON.stringify(audit), errs.length ? 'ОШИБКИ: ' + errs.slice(0, 2).join(' | ') : 'ошибок нет');
+    await page.close();
   }
-  await page.close();
 }
-
 await browser.close();
+server.close();
+console.log('скриншоты: ' + OUT);
