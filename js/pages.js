@@ -1,7 +1,7 @@
 /* ============================================================
    ЛОГИКА ОТДЕЛЬНЫХ СТРАНИЦ
    ============================================================ */
-import { initMesh } from './mesh.js';
+import { initMesh } from './mesh.js?v=2';
 
 const doc = document.documentElement;
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;

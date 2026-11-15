@@ -2,7 +2,7 @@
    горизонтальная галерея работ, реел, счётчики и курсор.
    Зависимости подключаются в index.html: gsap, ScrollTrigger, lenis, three (importmap). */
 import * as THREE from 'three';
-import { initMesh } from './mesh.js';
+import { initMesh } from './mesh.js?v=2';
 
 const $ = (s, c = document) => c.querySelector(s);
 const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));

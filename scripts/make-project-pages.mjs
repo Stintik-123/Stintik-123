@@ -206,8 +206,8 @@ ${preview}
     <span class="mono">Ульяновск · <a href="../index.html#contact">написать</a></span>
   </footer>
 
-<script type="module" src="../js/pages.js"></script>
-<script type="module" src="../js/palette.js"></script>
+<script type="module" src="../js/pages.js?v=1"></script>
+<script type="module" src="../js/palette.js?v=1"></script>
 
 <div class="cmdk" id="cmdk" role="dialog" aria-modal="true" aria-label="Поиск по сайту">
   <div class="cmdk-backdrop"></div>
@@ -259,8 +259,8 @@ ${nav(['../index.html', '← на главную'])}
     <span class="mono"><a href="../index.html">на главную</a></span>
   </footer>
 
-<script type="module" src="../js/pages.js"></script>
-<script type="module" src="../js/palette.js"></script>
+<script type="module" src="../js/pages.js?v=1"></script>
+<script type="module" src="../js/palette.js?v=1"></script>
 
 <div class="cmdk" id="cmdk" role="dialog" aria-modal="true" aria-label="Поиск по сайту">
   <div class="cmdk-backdrop"></div>
